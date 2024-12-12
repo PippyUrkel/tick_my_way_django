@@ -67,8 +67,8 @@ def get_login_dates(email):
     return user.get('login_dates', []) if user else []
 
 
-def generate_and_store_content(topic, count, user_email='andredsouza256@gmail.com'):   #temporarily hardcoded email
-    prompt = f"You are an AI that generates a MongoDB-style array of elements for the topic {topic}. Each element must contain a title, description, difficulty (easy, medium, hard), and status (done or not done, default=not_done).\nGenerate {count} items in the required format."
+def generate_and_store_content(topic, count, difficulty, user_email='andredsouza256@gmail.com'):   #temporarily hardcoded email
+    prompt = f"You are an AI that generates a MongoDB-style array of elements for the topic '{topic}'. Each element must contain a title, description, and of same difficulty {difficulty}.\nGenerate {count} items in the required format."
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
 
@@ -107,3 +107,4 @@ def get_generated_items(user_email='andredsouza256@gmail.com', q_topic=None):  #
     for doc in documents:
         generated_items.extend(doc.get('generated_items', []))
     return generated_items
+

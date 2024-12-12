@@ -1,4 +1,5 @@
 {% extends 'instructor-dashboard/base.html' %}
+{% load static %}
 {% block content %}
 <div class="main">
     <nav class="navbar navbar-expand px-3 border-bottom">
@@ -9,7 +10,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                        <img src="{{url_for('static', filename='instructor-dashboard/images/profile.jpg')}}" class="avatar img-fluid rounded" alt="">
+                        <img src="{% static 'instructor-dashboard/images/profile.jpg' %}" class="avatar img-fluid rounded" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a href="#" class="dropdown-item">Profile</a>
@@ -38,34 +39,38 @@
                         <div class="card-body">
                             <h6 class="card-title">{{ subject.title }}</h6>
                             <p class="card-text text-muted">Subject: {{ subject.title }}</p>
-                            <p class="card-text">Students Enrolled: {{ subject.enrolled_students | length }}</p>
-                            <a href="{{ url_for('instructor.instructor_course_forwarded', name=subject.title.replace(' ', '-')) }}" class="btn btn-primary w-100">View Course</a>
+                            <p class="card-text">Students Enrolled: {{ subject.enrolled_students|length }}</p>
+                            <a href="{% url 'instructor_course_forwarded' subject.title|slugify %}" class="btn btn-primary w-100">View Course</a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
 
-            <!-- Create New Course Section -->
-            <div class="mt-4">
-                <h5>Add a New Course</h5>
-                <form id="addCourseForm" method="POST" class="row g-3" action="{{ url_for('instructor.instructor_course') }}">
-                    {{ form.hidden_tag() }}
-                    <div class="col-md-4">
-                        {{ form.course_name(class="form-control", placeholder="Course Name") }}
-                    </div>
-                    <div class="col-md-4">
-                        {{ form.course_description(class="form-control", placeholder="Course Description") }}
-                    </div>
-                    <div class="col-md-4">
-                        {{ form.max_students(class="form-control", placeholder="Max Students") }}
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-success">Add Course</button>
-                    </div>
-                </form>
+                <!-- Create New Course Section -->
+                <div class="mt-4">
+                    <h5>Add a New Course</h5>
+                    <form id="addCourseForm" method="POST" class="row g-3" action="{% url 'instructor_course' %}">
+                        {% csrf_token %}
+                        <div class="col-md-4">
+                            {{ form.course_name }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.course_description }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.max_students }}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">Add Course</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+    </main>
+</div>
 {% endblock %}
+
 {% block scripts %}
 <!-- Bootstrap & Script -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>

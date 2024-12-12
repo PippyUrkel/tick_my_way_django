@@ -1,4 +1,7 @@
 {% extends 'instructor-dashboard/base.html' %}
+
+{% load static %}
+
 {% block content %}
 <div class="main">
     <nav class="navbar navbar-expand px-3 border-bottom">
@@ -9,7 +12,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                        <img src="{{url_for('static', filename='instructor-dashboard/images/profile.jpg')}}" class="avatar img-fluid rounded" alt="">
+                        <img src="{% static 'instructor_dashboard/images/profile.jpg' %}" class="avatar img-fluid rounded" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a href="#" class="dropdown-item">Profile</a>
@@ -31,14 +34,14 @@
                             <div class="row g-0 w-100">
                                 <div class="col-6">
                                     <div class="p-3 m-1">
-                                        <h4>Welcome Back {{instructor_name}}</h4>
-                                        <p><strong>Institute:</strong> {{instructor_inst}}</p>
-                                        <p><strong>Role:</strong>  Mentor</p>
-                                        <p><strong>Contact:</strong> {{identity}}</p>
+                                        <h4>Welcome Back {{ instructor_name }}</h4>
+                                        <p><strong>Institute:</strong> {{ instructor_inst }}</p>
+                                        <p><strong>Role:</strong> Course Skill Maintainer</p>
+                                        <p><strong>Contact:</strong> {{ identity }}</p>
                                     </div>
                                 </div>
                                 <div class="col-6 align-self-end text-end">
-                                    <img src="image/teacher.png" class="img-fluid illustration-img" alt="">
+                                    <img src="{% static 'instructor_dashboard/images/teacher.png' %}" class="img-fluid illustration-img" alt="">
                                 </div>
                             </div>
                         </div>
@@ -47,12 +50,12 @@
                 <div class="col-12 col-md-6 d-flex">
                     <div class="card flex-fill border-0" style="background-color: #f5f5dc;">
                         <div class="card-body py-4">
-                            <h4 class="mb-3">Courses Taught</h4>
+                            <h4 class="mb-3">Skills Taught</h4>
                             <ul class="list-group">
                                 {% for subject in subjects %}
                                     <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #e1d8b4;">
                                         {{ subject.title }}
-                                        <span class="badge bg-primary rounded-pill">{{ subject.enrolled_students | length }} Students</span>
+                                        <span class="badge bg-primary rounded-pill">{{ subject.enrolled_students|length }} Students</span>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -62,35 +65,7 @@
             </div>
 
             <!-- Student-Mentor Chat Section -->
-            <div class="card border-0">
-                <div class="card-header">
-                    <h5 class="card-title">Student-Mentor Chat</h5>
-                    <h6 class="card-subtitle text-muted">Communicate with students in real-time</h6>
-                </div>
-                <div class="card-body">
-                    <!-- Chat Window -->
-                    <div class="border rounded p-3 mb-3" style="height: 300px; overflow-y: auto;" id="chatWindow">
-                        <!-- Chat Messages -->
-                        <div class="d-flex align-items-start mb-3">
-                            <div class="flex-grow-1">
-                                <div class="text-muted"><strong>Student:</strong> Hello Mentor!</div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-start justify-content-end mb-3">
-                            <div class="flex-grow-1 text-end">
-                                <div class="text-primary"><strong>Mentor:</strong> Hi, how can I help you?</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Chat Input -->
-                    <form id="chatForm">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="chatInput" placeholder="Type a message...">
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
         </div>
     </main>
 </div>
@@ -107,13 +82,13 @@
         event.preventDefault();
         const message = chatInput.value;
         if (message.trim()) {
-            const chatMessage = 
+            const chatMessage = `
                 <div class="d-flex align-items-start justify-content-end mb-3">
                     <div class="flex-grow-1 text-end">
                         <div class="text-primary"><strong>Mentor:</strong> ${message}</div>
                     </div>
                 </div>
-            ;
+            `;
             chatWindow.innerHTML += chatMessage;
             chatWindow.scrollTop = chatWindow.scrollHeight;
             chatInput.value = '';
@@ -121,6 +96,3 @@
     });
 </script>
 {% endblock %}
-</body>
-
-</html>

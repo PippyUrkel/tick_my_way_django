@@ -70,7 +70,7 @@ def login(request):
                 # Check if passwords match
                 if password != confirm_password:
                     messages.error(request, 'Passwords do not match.')
-                    return redirect('signup')
+                    return redirect('login')
                 
                 # Check if user already exists
                 check_user = lookup_collection.find_one({"email": email})
@@ -97,7 +97,7 @@ def login(request):
                     return response
                 except Exception as e:
                     messages.error(request, 'An error occurred during signup. Please try again.')
-                    return redirect('signup')
+                    return redirect('login')
 
     else:
         form = LoginForm()

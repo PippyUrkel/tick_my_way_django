@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TickMyWay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5dc; /* Beige background */
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: #ff8c00; /* Orange color */
+            z-index: 1;
+        }
+
+        .welcome-text, .start-text {
+            font-size: 2em;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .start-text {
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button-container {
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 2s;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #ff8c00;
+            background-color: transparent;
+            border: 2px solid #ff8c00;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ff8c00;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .button:hover::before {
+            transform: scaleX(1);
+        }
+
+        .button:hover {
+            color: #fff;
+        }
+
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 200px;
+            background: url('https://www.svgrepo.com/show/2046/wave.svg') repeat-x;
+            background-size: contain;
+            animation: moveWaves 10s linear infinite;
+            transform: rotate(-45deg);
+            transform-origin: bottom left;
+            z-index: 0;
+        }
+
+        @keyframes moveWaves {
+            0% {
+                transform: translateX(0) rotate(-45deg);
+            }
+            100% {
+                transform: translateX(-50%) rotate(-45deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-text">Welcome to TickMyWay</div>
+        <div class="start-text">Let's get started</div>
+        <div class="button-container">
+            <a class="button" href="/login">Get Started</a>
+        </div>
+    </div>
+    <div class="waves"></div>
+</body>
+</html>

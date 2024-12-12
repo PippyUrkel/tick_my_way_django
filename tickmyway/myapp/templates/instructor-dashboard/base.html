@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -8,7 +10,7 @@
     <title>Mentor Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='instructor-dashboard/css_files/style.css')}}">
+    <link rel="stylesheet" href="{% static 'instructor-dashboard/css_files/style.css' %}">
     {% block extrascripts %}{% endblock %}
 </head>
 
@@ -22,25 +24,25 @@
                 <ul class="sidebar-nav">
                     <li class="sidebar-header">Dashboard</li>
                     <li class="sidebar-item">
-                        <a href="/instructor-dashboard" class="sidebar-link">
+                        <a href="{% url 'instructor_home' %}" class="sidebar-link">
                             <i class="fa-solid fa-house pe-2"></i>
                             Home
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/instructor-dashboard/courses" class="sidebar-link">
+                        <a href="{% url 'instructor_course' %}" class="sidebar-link">
                             <i class="fa-solid fa-book pe-2"></i>
                             My Courses
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/instructor-dashboard/grading" class="sidebar-link">
+                        <a href="{% url 'instructor_grading' %}" class="sidebar-link">
                             <i class="fa-solid fa-chart-line pe-2"></i>
                             Grading
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="/instructor-dashboard/reminders" class="sidebar-link">
+                        <a href="{% url 'instructor_reminders' %}" class="sidebar-link">
                             <i class="fa-solid fa-bell pe-2"></i>
                             Reminders
                         </a>
@@ -53,7 +55,9 @@
     </div>
 
     <!-- Bootstrap & Script -->
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarLinks = document.querySelectorAll('.sidebar-link');
@@ -88,7 +92,6 @@
             });
         });
     </script>
-    
 </body>
 
 </html>

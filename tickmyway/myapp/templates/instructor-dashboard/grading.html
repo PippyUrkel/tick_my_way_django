@@ -1,4 +1,6 @@
 {% extends 'instructor-dashboard/base.html' %}
+{% load static %}
+
 {% block content %}
 <div class="main">
     <nav class="navbar navbar-expand px-3 border-bottom">
@@ -9,7 +11,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                        <img src="{{url_for('static', filename='instructor-dashboard/images/profile.jpg')}}" class="avatar img-fluid rounded" alt="">
+                        <img src="{% static 'instructor-dashboard/images/profile.jpg' %}" class="avatar img-fluid rounded" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a href="#" class="dropdown-item">Profile</a>
@@ -45,7 +47,7 @@
                                             <tr>
                                                 <td>{{ student.name }}</td>
                                                 <td>{{ student.subject }}</td>
-                                                <td><a href="#" class="btn btn-primary">View Grading Portal</a></td>
+                                                <td><a href="" class="btn btn-primary">View Grading Portal</a></td>
                                                 <td>
                                                     {% if student.status == 'graded' %}
                                                         <span class="badge bg-success">Graded</span>
@@ -68,6 +70,7 @@
     </main>
 </div>
 {% endblock %}
+
 {% block addons %}
 <!-- Add this modal -->
 <div class="modal fade" id="gradingModal" tabindex="-1" aria-labelledby="gradingModalLabel" aria-hidden="true">
@@ -94,6 +97,7 @@
     </div>
 </div>
 {% endblock %}
+
 {% block scripts %}
 <!-- Bootstrap & Script -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import landing_page, profile, roadmap, skill_page, onboarding_quiz, dashboard, student_dashboard, student_courses, student_profile, student_shop, upload_file
+from myapp.views import landing_page, profile, roadmap, skill_page, onboarding_quiz, dashboard, student_dashboard, student_courses, student_profile, student_shop, upload_file, greeting, instructor_home, instructor_grading_forwarded, instructor_course_forwarded, instructor_reminders, instructor_course, instructor_grading, access_denied, upload_document
 from myapp.auth import login
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -39,4 +39,14 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('upload-file/', upload_file, name='upload_file'),
+    path('greeting/', greeting, name='greeting'),
+    path('instructor-dashboard/', instructor_home, name='instructor_home'),
+    path('instructor-dashboard/courses/', instructor_course, name='instructor_course'),
+    path('instructor-dashboard/courses/<str:name>/', instructor_course_forwarded, name='instructor_course_forwarded'),
+    path('instructor-dashboard/grading/', instructor_grading, name='instructor_grading'),
+    path('instructor-dashboard/grading-portal/', instructor_grading_forwarded, name='instructor_grading_forwarded'),
+    path('instructor-dashboard/reminders/', instructor_reminders, name='instructor_reminders'),
+    path('access-denied/', access_denied, name='access_denied'),
+    path('upload-document/', upload_document, name='upload_document'),
+
 ]

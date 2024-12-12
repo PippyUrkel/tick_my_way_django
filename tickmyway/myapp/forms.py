@@ -27,3 +27,8 @@ class SignupForm(forms.Form):
         label='Confirm Password',
         widget=forms.PasswordInput(attrs={'placeholder': 'Confirm your password'})
     )
+
+class AddCourseForm(forms.Form):
+    course_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Name'}))
+    course_description = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Description'}))
+    max_students = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Max Students'}))

@@ -27,7 +27,7 @@
         <div class="access-denied-message">
             <h1 class="display-4">Access Denied</h1>
             <p class="lead">You do not have permission to access this page.</p>
-            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Go to Login</a>
+            <a href="{% url 'login' %}" class="btn btn-primary">Go to Login</a>
         </div>
     </div>
 

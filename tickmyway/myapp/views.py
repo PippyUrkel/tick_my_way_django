@@ -18,6 +18,10 @@ import mimetypes
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from django.http import JsonResponse
+from .forms import AddCourseForm
+from django.core.files.storage import default_storage
+
+
 
 # MongoDB connection details
 uri = 'mongodb+srv://andre:WangoTango238@tick-my-way.fiy3g.mongodb.net/?retryWrites=true&w=majority&appName=tick-my-way'  # Replace with your actual MongoDB URI
@@ -113,27 +117,47 @@ def student_dashboard(request):
         
         print(f"dashboard : {user_email}")
 
-        # For now, simulate user information
-        user_lastactive = users_collection.find_one({"email": user_email})['login_dates'][-1]
-        user_experience = users_collection.find_one({"email": user_email})['experience']
-        user_platinum = users_collection.find_one({"email": user_email})['platinum']
-        user_level = users_collection.find_one({"email": user_email})['level']
-        # Simulate fetching data
+        # Fetch user information
+        user_info = users_collection.find_one({"email": user_email})
+        user_lastactive = user_info['login_dates'][-1]
+        user_experience = user_info['experience']
+        user_platinum = user_info['platinum']
+        user_level = user_info['level']
+
+        # Fetch subjects where the user_email is mentioned in enrolled_students
+        subjects = subjects_collection.find({"enrolled_students.student_email": user_email})
+        subjects_list = []
+        mentors_set = set()
+
+        for subject in subjects:
+            # Check the mentor's university
+            mentor = users_collection.find_one({"email": subject["instrcutor_email"]})
+            if mentor:
+                subjects_list.append({
+                    "title": subject["title"],
+                    "description": subject.get("description", ""),
+                    "instructor": mentor["username"]  # Fetch the mentor's name
+                })
+                # Collect mentor's name
+                mentors_set.add(mentor["username"])
+        
+        mentors_list = list(mentors_set)
+
         # Calculate streak
         streak = len(user_lastactive)
         user_streak = streak
-        subjects_list = [
-            {"title": "Math 101", "description": "Basic Mathematics", "instructor": "Dr. Smith"},
-        ]
+        print(subjects_list)
+        print(mentors_list)
 
         return render(request, 'student-dashboard-new/studentdashboard.html', {
             'user_email': user_email,
             'user_lastactive': user_lastactive,
-            'user_streak' : user_streak,
+            'user_streak': user_streak,
             'user_experience': user_experience,
             'user_platinum': user_platinum,
             'user_level': user_level,
             'subjects_list': subjects_list,
+            'mentors_list': mentors_list,
         })
     except jwt.ExpiredSignatureError:
         return JsonResponse({'error': 'Token has expired'}, status=401)
@@ -229,3 +253,138 @@ def roadmap(request):
         'filename': request.session.get('filename')
     }
     return render(request, 'roadmap-render/roadmap.html', context)
+
+
+def greeting(request):
+    return render(request, 'landing-page/greeeting.html', {})
+
+"""THIS IS THE INSTRUCTOR SIDE THIS IS THE INSTRUCTOR SIDE THIS IS THE INSTRUCTOR SIDE"""
+
+def instructor_home(request):
+    user = "jose10sojan@gmail.com"
+    role = users_collection.find_one({"email": user}).get("role")
+    if role != "mentor":
+        return redirect("access_denied")
+
+    instructor_name = users_collection.find_one({"email": user}).get("username")
+    instructor_inst = users_collection.find_one({"email": user}).get("institute")
+
+    subjects = subjects_collection.find({"instructor_email": user})
+    subjects_list = [
+        {
+            "title": subject["title"],
+            "enrolled_students": subject["enrolled_students"],
+        }
+        for subject in subjects
+    ]
+
+    return render(
+        request,
+        "instructor-dashboard/home.html",
+        {
+            "instructor_name": instructor_name,
+            "instructor_inst": instructor_inst,
+            "identity": user,
+            "subjects": subjects_list,
+        },
+    )
+
+from django.contrib.auth.models import AnonymousUser
+
+
+
+def instructor_course(request):
+    user = "jose10sojan@gmail.com"
+    role = users_collection.find_one({"email": user}).get("role")
+
+
+    form = AddCourseForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        new_course = {
+            "title": form.cleaned_data["course_name"],
+            "description": form.cleaned_data["course_description"],
+            "instrcutor_email": user,
+            "max_students": form.cleaned_data["max_students"],
+            "enrolled_students": [],
+        }
+        subjects_collection.insert_one(new_course)
+        messages.success(request, "New course added successfully!")
+        return redirect("instructor_course")
+
+    subjects = subjects_collection.find({"instrcutor_email": user})
+    subjects_list = [
+        {
+            "title": subject["title"],
+            "description": subject.get("description", ""),
+            "enrolled_students": subject["enrolled_students"],
+        }
+        for subject in subjects
+    ]
+    return render(request, "instructor-dashboard/courses.html", {"form": form, "subjects": subjects_list})
+
+
+def instructor_course_forwarded(request, name):
+    user = "jose10sojan@gmail.com"
+
+    subject_title = name.replace("-", " ")
+    subject = subjects_collection.find_one({"title": subject_title, "instrcutor_email": user})
+
+
+    return render(request, "instructor-dashboard/viewcourse.html", {"subject": subject})
+
+def instructor_grading(request):
+    user = "jose10sojan@gmail.com"
+    role = users_collection.find_one({"email": user})['role']
+    subjects = subjects_collection.find({"instrcutor_email": user})
+    students_list = []
+    for subject in subjects:
+        for student in subject["enrolled_students"]:
+            students_list.append({
+                "name": student["student_email"],
+                "status": student["status"],
+                "subject": subject["title"]
+            })
+    
+    return render(request, "instructor-dashboard/grading.html", {"students": students_list})
+
+def instructor_grading_forwarded(request):
+    student_name = request.GET.get('student')
+    subject_name = request.GET.get('subject')
+    
+    user = "jose10sojan@gmail.com"
+    role = users_collection.find_one({"email": user.email})['role']
+
+    subject = subjects_collection.find_one({"title": subject_name, "instrcutor_email": user.email})
+    if not subject:
+        return redirect('access_denied')
+    
+    student_data = next((student for student in subject["enrolled_students"] if student["student_email"] == student_name), None)
+    if not student_data:
+        return redirect('access_denied')
+    
+    return render(request, "instructor-dashboard/gradingforward.html", {
+        "student_name": student_name,
+        "subject_name": subject_name,
+        "student_data": student_data
+    })
+
+
+def access_denied(request):
+    return render(request, "instructor-dashboard/denied.html")
+
+def instructor_reminders(request):
+    return render(request, 'instructor-dashboard/reminders.html')
+
+
+@csrf_exempt
+def upload_document(request):
+    if request.method == 'POST' and request.FILES['document']:
+        document = request.FILES['document']
+        if document.name.endswith('.docx'):
+            filename = "jose10sojan@gmail.com-resource.docx"
+            file_path = os.path.join(settings.MEDIA_ROOT, 'uploads', filename)
+            default_storage.save(file_path, document)
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+        else:
+            return JsonResponse({'error': 'Invalid file type. Only .docx files are allowed.'}, status=400)
+    return JsonResponse({'error': 'No file uploaded'}, status=400)
