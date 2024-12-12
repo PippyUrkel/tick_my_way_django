@@ -244,7 +244,7 @@ def upload_file(request):
     return redirect('roadmap')
 
 def roadmap(request):
-    user_email = request.user_email
+    user_email = "andredsouza256@gmail.com"
     items = get_generated_items(user_email, q_topic="Arts Craft")
     
     context = {

@@ -29,9 +29,14 @@
               {{form.password}}
             </div>
             <!-- Buttons for selecting role -->
-              <button type="submit" class="btn" id="instructor-btn">
-                Sign in !
+            <div class="button-group">
+              <button type="submit" class="btn" name="role" value="instructor" id="instructor-signin-btn">
+                Sign in as Instructor
               </button>
+              <button type="submit" class="btn" name="role" value="student" id="student-signin-btn">
+                Sign in as Student
+              </button>
+            </div>
           </form>
           
           <!-- Sign Up Form -->
@@ -53,9 +58,14 @@
               {{signup.confirm_password}}
             </div>
             <!-- Role selection buttons for sign up -->
+            <div class="button-group">
               <button type="submit" class="btn" name="role" value="instructor" id="instructor-signup-btn">
-                Sign up !!
+                Sign up as Instructor
               </button>
+              <button type="submit" class="btn" name="role" value="institute" id="institute-signup-btn">
+                Sign up as Institute
+              </button>
+            </div>
           </form>
         </div>
       </div>

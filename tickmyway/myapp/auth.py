@@ -38,7 +38,8 @@ def login(request):
                 # Process the login form data
                 email = form.cleaned_data['email']
                 password = form.cleaned_data['password']
-                print(f"Login - Email: {email}, Password: {password}")
+                role = request.POST.get('role')
+                print(f"Login - Email: {email}, Password: {password}, Role: {role}")
                 
                 # Check user in MongoDB
                 check_user = users_collection.find_one({"email": email, "password": password})
@@ -50,7 +51,10 @@ def login(request):
                     access_token = create_access_token(email)
                     
                     messages.success(request, f'Login successful for {email}')
-                    response = redirect('student_dashboard')
+                    if role == 'instructor':
+                        response = redirect('instructor_home')
+                    else:
+                        response = redirect('student_dashboard')
                     response.set_cookie(
                         'access_token',
                         access_token,
@@ -65,7 +69,8 @@ def login(request):
                 email = signup.cleaned_data['email']
                 password = signup.cleaned_data['password']
                 confirm_password = signup.cleaned_data['confirm_password']
-                print(f"Signup - Email: {email}, Password: {password}, Confirm Password: {confirm_password}")
+                role = request.POST.get('role')
+                print(f"Signup - Email: {email}, Password: {password}, Confirm Password: {confirm_password}, Role: {role}")
                 
                 # Check if passwords match
                 if password != confirm_password:
@@ -83,11 +88,18 @@ def login(request):
                     access_token = create_access_token(email)
                     new_user = {
                         "email": email,
-                        "password": password
+                        "password": password,
+                        "role": role
                     }
                     users_collection.insert_one(new_user)
                     
-                    response = redirect('student_dashboard')
+                    if role == 'instructor':
+                        response = redirect('instructor_home')
+                    elif role == 'institute':
+                        response = redirect('institute_dashboard')
+                    else:
+                        response = redirect('student_dashboard')
+                    
                     response.set_cookie(
                         'access_token',
                         access_token,
