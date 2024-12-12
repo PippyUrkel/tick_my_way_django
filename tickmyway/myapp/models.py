@@ -107,3 +107,5 @@ def get_generated_items(user_email='andredsouza256@gmail.com', q_topic=None):  #
     for doc in documents:
         generated_items.extend(doc.get('generated_items', []))
     return generated_items
+
+

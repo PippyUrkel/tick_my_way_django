@@ -9,15 +9,12 @@ body, html {
 
 /* Body Styling */
 body {
-    background-color: #f8d9b0;
+    background-color: #FAEBD7; /* Antique White */
     display: flex;
     height: 100vh;
     overflow: hidden;
     font-family: Arial, sans-serif;
 }
-
-/* Universal div margin for consistency */
-
 
 /* Left Pane Styling */
 .leftpane {
@@ -96,7 +93,7 @@ body {
     left: 0;
     width: 0%;
     height: 100%;
-    background-color: #8b4513;
+    background-color: #4682B4; /* Steel Blue */
     z-index: 0;
     transition: width 0.6s ease-in-out;
 }
@@ -133,8 +130,8 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: antiquewhite;
-    border: 1px solid antiquewhite;
+    background-color: #FAEBD7; /* Antique White */
+    border: 1px solid #FAEBD7; /* Antique White */
     border-radius: 12px;
     padding: 0 12px;
     height: 50px;
@@ -195,10 +192,8 @@ body {
     height: 10%;
     margin-bottom: 12px;
     border-radius: 25%;
-    background-color: #8b4513;
+    background-color: #4682B4; /* Steel Blue */
 }
-
-
 
 .side-left-bottom{
     height: 10%;
@@ -222,14 +217,12 @@ body {
 
 .side-right-bottom-left{
     width: 71%;
-    border: 2px solid #8b4513;
+    border: 2px solid #4682B4; /* Steel Blue */
     border-radius: 16px;
     margin-right: 12px;
     display: flex;
     flex-direction: column;
 }
-
-
 
 .side-left-center {
     position: relative;
@@ -246,7 +239,7 @@ body {
     left: 0;
     width: 100%;
     height: 20%;
-    background-color: #8b4513;
+    background-color: #4682B4; /* Steel Blue */
     z-index: 1;
 }
 
@@ -316,8 +309,6 @@ body {
     border-radius: 16px;
 }
 
-
-
 .activity-title{
     height: 10%;
 }
@@ -326,19 +317,18 @@ body {
     margin-top: 10px;
     margin-left: 10px;
     font-weight: 600;
-    color: #8b4513;
+    color: #4682B4; /* Steel Blue */
 }
 .activity-month{
     height: 10%;
-
 }
 .activity-month p{
     font-size:22px;
     margin-top: 10px;
     margin-left: 10px;
     font-weight: 600;
-    color: #8b4513d1;
-    border-bottom: 2px solid #8b4513;
+    color: #4682B4; /* Steel Blue */
+    border-bottom: 2px solid #4682B4; /* Steel Blue */
     margin-right: 10px;
 }
 .days {
@@ -359,7 +349,6 @@ body {
     margin-top: 7px;
     margin-left: 7px;
 }
-
 
 /* badge gallery */
 .side-right-bottom-right {
@@ -388,7 +377,7 @@ body {
 .badge-title p {
     font-size: 20px;
     font-weight: bold;
-    color: #8b4513;
+    color: #4682B4; /* Steel Blue */
     margin: 0;
 }
 
@@ -400,28 +389,18 @@ body {
     padding: 10px; 
     overflow-y: auto;
     border-radius: 16px;
-    
 }
 
-.badge-gallery::-webkit-scrollbar {
-    display: none;
-}
-
-.badge {
-    width: 100%; /* Automatically scales to the grid cell */
-    height: 80px;
-    border-radius: 10px;
-    overflow: hidden;
+.badge-gallery {
     display: flex;
-    justify-content: center;
-    align-items: center;
-
+    flex-direction: column; /* Arrange badges vertically */
+    gap: 10px; /* Add space between badges */
 }
 
 .badge img {
-    max-width: 100%;
-
-    object-fit: cover; /* Ensures the image fits within the div */
-    border-radius: 10px;
+    width: 50px; /* Set desired width for the badge images */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure images align properly */
+    margin: 0 auto; /* Center the images horizontally if needed */
 }
 
