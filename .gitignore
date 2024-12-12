@@ -5,6 +5,7 @@
 __pycache__/
 local_settings.py
 tickmyway/tickmyway/__pycache__
+tickmyway/db.sqlite3
 
 # Environments
 .env
