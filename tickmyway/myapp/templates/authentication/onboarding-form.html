@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step Questionnaire</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #faebd7 0%, #deb887 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5d4037;
+      line-height: 1.6;
+    }
+
+    .container {
+      background: rgba(250, 235, 215, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(139, 69, 19, 0.1);
+      width: 100%;
+      max-width: 600px;
+      padding: 32px;
+      margin: 20px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(222, 184, 135, 0.2);
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #f5e6d3;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #deb887, #d2691e);
+      transition: width 0.5s ease;
+    }
+
+    .section {
+      padding: 24px;
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px rgba(139, 69, 19, 0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-2px);
+    }
+
+    .question {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #8b4513;
+      line-height: 1.3;
+    }
+
+    .subtext {
+      color: #a0522d;
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 2px solid #f5e6d3;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    .input-field:focus {
+      border-color: #deb887;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(222, 184, 135, 0.1);
+    }
+
+    .option {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 2px solid #f5e6d3;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      background: white;
+      color: #8b4513;
+    }
+
+    .option:hover {
+      border-color: #deb887;
+      background: #fdf5e6;
+    }
+
+    .option.selected {
+      background: #deb887;
+      border-color: #deb887;
+      color: white;
+    }
+
+    .button {
+      width: 100%;
+      padding: 16px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      background: linear-gradient(90deg, #deb887, #d2691e);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .button:disabled {
+      background: #f5e6d3;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(222, 184, 135, 0.2);
+    }
+
+    .button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    #dashboard-button {
+      background: linear-gradient(90deg, #d2691e, #deb887);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+        margin: 16px;
+      }
+
+      .question {
+        font-size: 1.5rem;
+      }
+
+      .subtext {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="progress-bar">
+      <div class="progress-bar-fill" style="width: 0%;"></div>
+    </div>
+    <div id="question-container" class="section">
+      <div class="question">Question will appear here</div>
+      <div class="subtext">Subtext will appear here</div>
+      <div id="input-container"></div>
+    </div>
+    <button id="next-button" class="button" disabled>Next</button>
+    <button id="dashboard-button" class="button" style="display: none;">Go to Dashboard</button>
+  </div>
+
+  <script>
+    const questions = [
+      { id: 'name', question: "What's your name?", subtext: "Let's start with an introduction", type: 'text', placeholder: 'Enter your full name' },
+      { id: 'background', question: "What's your background?", subtext: "Tell us about your current situation", type: 'select', options: ['Student', 'Working Professional', 'Career Changer', 'Entrepreneur', 'Other'] },
+      { id: 'goals', question: "What's your main goal?", subtext: "This helps us understand your motivation", type: 'select', options: ['Learn new skills', 'Change career paths', 'Start a business', 'Personal interest', 'Academic requirement'] },
+      { id: 'interests', question: "What topics interest you?", subtext: "Select all that apply", type: 'multiSelect', options: ['Web Development', 'Mobile Development', 'Data Science', 'UI/UX Design', 'Digital Marketing', 'Business Analytics', 'Artificial Intelligence', 'Cybersecurity'] },
+      { id: 'experience', question: "How experienced are you in these areas?", subtext: "Be honest - everyone starts somewhere!", type: 'select', options: ['Complete Beginner', 'Some Basic Knowledge', 'Intermediate', 'Advanced'] },
+      { id: 'learningStyle', question: "How do you prefer to learn?", subtext: "Choose your preferred learning style", type: 'select', options: ['Video Tutorials', 'Reading Documentation', 'Interactive Projects', 'Group Learning', 'One-on-One Mentoring'] },
+      { id: 'timeCommitment', question: "How much time can you dedicate weekly?", subtext: "Be realistic about your availability", type: 'select', options: ['1-2 hours', '3-5 hours', '6-10 hours', '10+ hours'] },
+    ];
+
+    let currentStep = 0;
+    const answers = {};
+
+    const questionContainer = document.getElementById('question-container');
+    const progressBarFill = document.querySelector('.progress-bar-fill');
+    const nextButton = document.getElementById('next-button');
+    const dashboardButton = document.getElementById('dashboard-button');
+
+    function renderQuestion() {
+      const currentQuestion = questions[currentStep];
+
+      const questionElement = questionContainer.querySelector('.question');
+      const subtextElement = questionContainer.querySelector('.subtext');
+      const inputContainer = document.getElementById('input-container');
+
+      questionElement.textContent = currentQuestion.question;
+      subtextElement.textContent = currentQuestion.subtext;
+
+      inputContainer.innerHTML = '';
+      if (currentQuestion.type === 'text') {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'input-field';
+        input.placeholder = currentQuestion.placeholder;
+        input.value = answers[currentQuestion.id] || '';
+        input.addEventListener('input', () => {
+          answers[currentQuestion.id] = input.value;
+          nextButton.disabled = !input.value.trim();
+        });
+        inputContainer.appendChild(input);
+      } else if (currentQuestion.type === 'select') {
+        currentQuestion.options.forEach(option => {
+          const optionElement = document.createElement('div');
+          optionElement.className = 'option';
+          optionElement.textContent = option;
+          if (answers[currentQuestion.id] === option) {
+            optionElement.classList.add('selected');
+          }
+          optionElement.addEventListener('click', () => {
+            answers[currentQuestion.id] = option;
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            optionElement.classList.add('selected');
+            nextButton.disabled = false;
+          });
+          inputContainer.appendChild(optionElement);
+        });
+      } else if (currentQuestion.type === 'multiSelect') {
+        if (!answers[currentQuestion.id]) answers[currentQuestion.id] = [];
+        currentQuestion.options.forEach(option => {
+          const optionElement = document.createElement('div');
+          optionElement.className = 'option';
+          optionElement.textContent = option;
+          if (answers[currentQuestion.id].includes(option)) {
+            optionElement.classList.add('selected');
+          }
+          optionElement.addEventListener('click', () => {
+            const index = answers[currentQuestion.id].indexOf(option);
+            if (index > -1) {
+              answers[currentQuestion.id].splice(index, 1);
+              optionElement.classList.remove('selected');
+            } else {
+              answers[currentQuestion.id].push(option);
+              optionElement.classList.add('selected');
+            }
+            nextButton.disabled = answers[currentQuestion.id].length === 0;
+          });
+          inputContainer.appendChild(optionElement);
+        });
+      }
+
+      progressBarFill.style.width = `${((currentStep + 1) / questions.length) * 100}%`;
+      nextButton.disabled = !answers[currentQuestion.id] || 
+        (Array.isArray(answers[currentQuestion.id]) && answers[currentQuestion.id].length === 0);
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (currentStep < questions.length - 1) {
+        currentStep++;
+        renderQuestion();
+      } else {
+        nextButton.style.display = 'none';
+        dashboardButton.style.display = 'block';
+      }
+    });
+
+    dashboardButton.addEventListener('click', () => {
+      alert('Redirecting to dashboard...');
+      // Replace the line below with actual redirection logic
+      window.location.href = '/login';
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>
+

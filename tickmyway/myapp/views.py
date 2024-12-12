@@ -221,3 +221,6 @@ def roadmap(request):
     }
     
     return render(request, 'roadmap-render/roadmap.html', context)
+
+def onboarding_form(request):
+    return render(request, 'authentication/onboarding-form.html', {})

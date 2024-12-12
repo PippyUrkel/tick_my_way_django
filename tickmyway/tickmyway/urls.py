@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import landing_page, profile, roadmap, skill_page, onboarding_quiz, dashboard, student_dashboard, student_courses, student_profile, student_shop, upload_file
+from myapp.views import landing_page, profile, roadmap, skill_page, onboarding_quiz, dashboard, student_dashboard, student_courses, student_profile, student_shop, upload_file, onboarding_form
 from myapp.auth import login
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -39,4 +39,5 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('upload-file/', upload_file, name='upload_file'),
+    path('onboarding-form/', onboarding_form, name='onboarding_form'),
 ]
