@@ -1,0 +1,512 @@
+body{
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    height: 98vh;
+}
+
+.leftpane{
+    width: 20%;
+    background-color: #ffffff;
+    margin: 8px;
+    border-radius: 16px;
+}
+
+.logodiv {
+    display: flex;
+    border-bottom: 2px solid black;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+.logodiv .logo {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.logodiv .logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 15px;
+    padding-right: 20px; /* Add some space to the right */
+}
+
+.navbar ,.navbar1{
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.navbar li,.navbar1 li {
+    background-color: #ffffff;
+    font-size: 17px;
+    padding: 13px 0;
+    padding-left: 12px;
+    margin-bottom: 15px;
+    position: relative; /* Allow positioning of the pseudo-element */
+    overflow: hidden; /* Hide the pseudo-element when outside */
+    border-radius: 5px; /* Smooth edges like a button */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+    font-weight: bold;
+    color: #000; /* Default text color */
+}
+
+.navbar li a, .navbar1 li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit; /* Inherit text color */
+    font-size: 16px;
+    position: relative; /* Ensure content stays above the pseudo-element */
+    z-index: 1;
+}
+
+.navbar li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%; /* Start with 0% width */
+    height: 100%;
+    background-color: #8b4513; /* Fill color */
+    transition: width 0.6s ease-in-out; /* Smoothly expand the width */
+    z-index: 0; /* Behind the content */
+}
+
+.navbar li:hover::before {
+    width: 100%; /* Expand to full width on hover */
+}
+
+
+
+.navbar li:hover a {
+    color: #ffffff; /* Change text color to white on hover */
+}
+
+
+.navdiv {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 8px;
+}
+
+
+.navbar img , .navbar1 img {
+    height: 30px;
+    width: 30px;
+}
+
+.navbar li i, .navbar1 li i {
+    font-size: 20px;
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.rightpane{
+    flex-grow: 1;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-div {
+    display: flex;
+    justify-content: flex-end;  /* Align everything to the right */
+    align-items: center;  /* Vertically center the items */
+    margin-bottom: 40px;
+    position: relative;
+    padding: 10px;
+    width: auto;
+    background-color: white;
+    margin: 8px;
+    border-radius: 16px;
+}
+
+
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-left: 3px solid #000000; 
+    z-index: 2; /* Ensure profile stays above other elements */
+}
+
+.searchbar {
+    height: 67px;
+    width: 250px;
+    border-radius: 12px;
+    margin-right: 16px; /* Add some space between search and profile */
+    border: 1px solid antiquewhite;
+    padding-left: 12px;
+    font-size: 1rem;
+    background-color: antiquewhite;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1; /* Keep it below the profile */
+}
+
+
+
+.searchbar img {
+    height: 48px; /* Adjust size of the image */
+    width: 48px;
+    border-radius: 50%; /* Optional, for a circular icon */
+}
+.searchbar input::placeholder{
+    color: #000;
+}
+
+.searchbar input {
+    height: 53px;
+    width: 200px;
+    border-radius: 12px;
+    border: none; /* Remove inner border */
+    outline: none; /* Remove outline on focus */
+    padding-left: 10px; /* Add space within the input field */
+    font-size: 1rem;
+    background-color: transparent; /* Make input field background transparent */
+    color: white; /* Ensure text is visible */
+}
+
+
+
+.pfp {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.bottom-div {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    margin: 4px 8px 8px 4px;
+    border-radius: 16px;
+}
+
+.roadmap-pane{
+    border-radius: 20px;
+    width: 30%;
+    height: 835px;
+    background-color: #ffffff; 
+    margin: 0px 8px 0px 0px;
+    overflow-y: scroll;
+    border: 2px solid #882222;
+}
+
+.roadmap-pane::-webkit-scrollbar {
+    display: none;
+}
+
+.info-pane{
+    border-radius: 16px;
+    flex-grow: 1;
+    background-color: #ffffff; 
+    margin: 0px 0px 0px 8px;
+}
+
+.roadmap {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    
+}
+
+.roadmap-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.roadmap-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.roadmap-item {
+    background-color: antiquewhite;
+    border: 10px solid #882222;
+    border-radius: 25px;
+    padding: 8px;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.arrow {
+    display: inline-block;
+    font-size: 30px;
+    margin-bottom: 8px;
+    transform: rotate(90deg);
+    color: #662218; /* Change the color to a more vibrant one */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.arrow:hover {
+    transform: rotate(90deg) scale(1.2); /* Scale up on hover */
+    color: #FF6347; /* Change color on hover */
+}
+
+.info-pane {
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 16px;
+    margin-top: 16px;
+    flex-grow: 1;
+    height: 790px;
+    overflow-y: scroll;
+    border: 1px solid #882222;
+}
+.info-pane::-webkit-scrollbar {
+    display: none;
+}
+
+.info-pane .description-title {
+    font-size: 24px;
+    border: 1px solid #8b4513;
+    height: 10%;
+    width: 78%;
+    margin-left:98px ;
+}
+
+.info-pane .description-content {
+
+    flex-grow: 1;
+}
+
+.info-pane .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+
+    height: 10%;
+}
+
+.info-pane .quiz-question {
+    margin-bottom: 16px;
+}
+
+.info-pane .quiz-question p {
+    margin-bottom: 8px;
+}
+
+.info-pane .quiz-question input {
+    margin-right: 8px;
+}
+
+.description-title{
+    background-color: antiquewhite;
+    height: 25px;
+    width: 750px;
+    margin-left: 105px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.description-title p{
+    font-size: 1.5rem;
+    color: #882222;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.discription-pop{
+    background-color: #8b4513;
+    height: 250px;
+    width: 750px;
+    margin-left: 105px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.description-content p{
+    font-size: 24px;
+    margin: 10px 30px 30px 30px;
+    padding: 20px;
+    color: antiquewhite;
+
+}
+
+.navigation-buttons button{
+    background-color: antiquewhite;
+    color: #8b5413;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100px;
+    font-size: 1rem;
+    margin-left: 105px;
+    margin-right: 65px;
+}
+.navigation-buttons button:hover{
+    background-color: #8b4513;
+    color: antiquewhite;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100px;
+    font-size: 1rem;
+    margin-left: 105px;
+    margin-right: 65px;
+}
+
+.roadmap-item {
+    cursor: pointer; /* Show pointer cursor on hover */
+    padding: 1px;
+    border-radius: 20px; /* Optional: rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.quiz-question {
+    background-color: antiqueWhite;
+    padding: 1px;
+    border-radius: 8px;
+    border: 1px solid #8b4513;
+    width: 80%;
+    margin-left: 100px
+}
+
+.quiz-question p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+    color: #8b4513; /* Saddle brown */
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Style for the radio buttons */
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px; /* Increase size */
+    height: 20px; /* Increase size */
+    border-radius: 50%; /* Make it round */
+    border: 2px solid #8b4513; /* Brown border */
+    background-color: #fff; /* White background */
+    outline: none; /* Remove default focus outline */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* On hover, change background color */
+input[type="radio"]:hover {
+    background-color: #8b4513; /* Brown color */
+    border-color: #8b4513; /* Brown border */
+}
+
+/* When radio button is checked */
+input[type="radio"]:checked {
+    background-color: #8b4513; /* Brown background */
+    border-color: #8b4513; /* Brown border */
+}
+
+/* Add a checkmark style */
+input[type="radio"]:checked::before {
+    content: '';
+    width: 10px; /* Size of checkmark */
+    height: 10px; /* Size of checkmark */
+    background-color: #fff; /* White checkmark */
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+.submitting{
+    background-color: #8b4513;
+    color: antiquewhite;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    width: 820px;
+    font-size: 1rem;
+    margin-left: 100px;
+    margin-right: 65px;
+}
+
+.submitting:hover{
+    background-color: #64310d;
+    color: antiquewhite;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    width: 820px;
+    font-size: 1rem;
+    margin-left: 100px;
+    margin-right: 65px;
+}
+
+/* Add to roadmap-sih.css */
+.file-section {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.file-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-label {
+    padding: 8px 15px;
+    background: #f5f5f5;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.upload-btn {
+    padding: 8px 15px;
+    background: #E5533D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background: #d44731;
+}
+
+.file-display {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    min-height: 100px;
+}
+
+.upload-icon {
+    font-size: 1.2em;
+}

@@ -1,0 +1,139 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-avatar img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-name {
+    font-size: 24px;
+    margin: 0;
+}
+
+.profile-email {
+    font-size: 16px;
+    color: #888;
+}
+
+.profile-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-section {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.profile-section h2 {
+    margin-top: 0;
+}
+
+.progress-bar {
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress {
+    background-color: #4caf50;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.achievements-list,
+.courses-list {
+    list-style: none;
+    padding: 0;
+}
+
+.achievements-list li,
+.courses-list li {
+    background-color: #333;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.contributions-graph {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2a2a2a; /* Outer layer background color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the outer layer */
+    max-width: 90%; /* Ensure it remains smaller than the containing div */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+.month-label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.graph-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px; /* Increase the gap between boxes */
+    max-width: 100%; /* Ensure it remains within the outer layer */
+}
+
+.graph-box {
+    width: 30px; /* Increase the size of the boxes */
+    height: 30px; /* Increase the size of the boxes */
+    background-color: #333;
+    border-radius: 3px;
+    position: relative;
+}
+
+.graph-box.active {
+    background-color: #E5533D; /* Red color for active dates */
+}
+
+.graph-box.inactive {
+    background-color: #888; /* Grey color for inactive dates */
+}
+
+.graph-box:hover::after {
+    content: attr(data-date);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+}

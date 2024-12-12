@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding - Skill Selection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'roadmap-render/skill-page.css' %}">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h2 class="mb-4">Welcome to TickMyWay!</h2>
+        <p class="mb-4">Let's get started by selecting the skills you are interested in learning.</p>
+        <form id="skill-form" method="post" action="{% url 'onboarding_quiz' %}">
+            {% csrf_token %}
+            <div class="skills">
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">HTML</div>
+                    </div>
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">CSS</div>
+                    </div>
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">JavaScript</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">Python</div>
+                    </div>
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">Django</div>
+                    </div>
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">Flask</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">React</div>
+                    </div>
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">Node.js</div>
+                    </div>
+                    <div class="col">
+                        <div class="skill" onclick="toggleSkill(this)">MongoDB</div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="selected_skills" id="selected-skills">
+            <button type="submit" class="btn btn-primary mt-4">Next</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleSkill(element) {
+            element.classList.toggle('selected');
+            updateSelectedSkills();
+        }
+
+        function updateSelectedSkills() {
+            const selectedSkills = [];
+            document.querySelectorAll('.skill.selected').forEach(skill => {
+                selectedSkills.push(skill.textContent);
+            });
+            document.getElementById('selected-skills').value = selectedSkills.join(',');
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

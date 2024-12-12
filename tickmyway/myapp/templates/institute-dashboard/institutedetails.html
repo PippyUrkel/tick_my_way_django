@@ -1,0 +1,117 @@
+{% extends 'institute-dashboard/base.html' %}
+
+{% block title %}Institute Details{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="mb-3">
+            <h4>Institute Dashboard</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 d-flex">
+                <div class="card flex-fill border-0 illustration">
+                    <div class="card-body p-0 d-flex flex-fill">
+                        <div class="row g-0 w-100">
+                            <div class="col-6">
+                                <div class="p-3 m-1">
+                                    <h4>Welcome Back {{admin_name}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-6 align-self-end text-end">
+                                <img src="{{ url_for('static', filename='institute-dashboard/images/image.png') }}" class="img-fluid illustration-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Institute Overview Card -->
+            <div class="col-12 col-md-6 d-flex">
+                <div class="card flex-fill border-0">
+                    <div class="card-body py-4">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <h4 class="mb-2">Institute Overview</h4>
+                                <p class="mb-2">
+                                    <strong>Total Students:</strong> {{ student_list | length }} <br>
+                                    <strong>Total Mentors:</strong> {{ total_mentors }}
+                                </p>
+                            </div>
+                            <div>
+                                <img src="{{ url_for('static', filename='institute-dashboard/images/institute.png') }}" alt="Institute Overview" class="img-fluid" style="max-width: 300px; height: 150px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Institute Details Section -->
+        <div class="card border-0">
+            <div class="card-header">
+                <h5 class="card-title">Institute Details</h5>
+                <h6 class="card-subtitle text-muted">View the details of your institution</h6>
+            </div>
+            <div class="card-body">
+                <!-- Institute Name -->
+                <div class="mb-3">
+                    <h6 class="mb-2">Institute Name: {{inst_name}}</h6>
+                </div>
+
+                <!-- Total Students -->
+                <div class="mb-3">
+                    <h6 class="mb-2">Total No. of Students: {{students | length}}</h6>
+                </div>
+
+                <!-- Total Mentors -->
+                <div class="mb-3">
+                    <h6 class="mb-2">Total No. of Mentors: {{mentors | length}}</h6>
+                </div>
+
+                <!-- Institute ID -->
+                <div class="mb-3">
+                    <h6 class="mb-2">Institute ID:</h6>
+                    <p>{{ institute_id }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mentors and Students Section -->
+        <div class="card border-0 mt-3">
+            <div class="card-header">
+                <h5 class="card-title">Mentors and Students</h5>
+                <h6 class="card-subtitle text-muted">View the lists of mentors and students in your institute</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Mentors List -->
+                    <div class="col-12 col-md-6">
+                        <h6 class="mb-3">Mentors</h6>
+                        <ul class="list-group">
+                            {% for mentor in mentors %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #f8f9fa; color: #495057;">
+                                    {{ mentor.name }} 
+                                    <span class="text-muted">{{ mentor.email }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Students List -->
+                    <div class="col-12 col-md-6">
+                        <h6 class="mb-3">Students</h6>
+                        <ul class="list-group">
+                            {% for student in students %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #f8f9fa; color: #495057;">
+                                    {{ student.name }}
+                                    <span class="text-muted">{{ student.email }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

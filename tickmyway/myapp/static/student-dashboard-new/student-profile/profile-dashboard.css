@@ -1,0 +1,427 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    background-color: #f8d9b0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Universal div margin for consistency */
+
+
+/* Left Pane Styling */
+.leftpane {
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 16px;
+    padding: 8px;
+    margin: 12px;
+}
+
+/* Navigation Menu */
+.navdiv {
+    background-color: white;
+    border-radius: 15px;
+    padding: 16px;
+}
+
+.logodiv {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.logo {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    margin-left: 15px;
+}
+
+.navbar {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.navbar li {
+    background-color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    color: #000;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar li img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.navbar li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #8b4513;
+    z-index: 0;
+    transition: width 0.6s ease-in-out;
+}
+
+.navbar li:hover::before {
+    width: 100%;
+}
+
+.navbar li:hover a {
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+/* Right Pane Styling */
+.rightpane {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+    padding: 10px;
+    margin: 12px;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: antiquewhite;
+    border: 1px solid antiquewhite;
+    border-radius: 12px;
+    padding: 0 12px;
+    height: 50px;
+}
+
+.searchbar img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.searchbar input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color: #000;
+    width: 180px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    border-left: 3px solid #000;
+    padding-left: 15px;
+}
+
+.pfp {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+/* Main Pane */
+.main-pane {
+    display: flex;
+    flex-grow: 1;
+    border-radius: 16px;
+    margin: 12px;
+}
+
+.side-left {
+    width: 6%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-right{
+    flex-grow: 1;
+    border-radius: 12px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-left-top{
+    height: 10%;
+    margin-bottom: 12px;
+    border-radius: 25%;
+    background-color: #8b4513;
+}
+
+
+
+.side-left-bottom{
+    height: 10%;
+    border-radius: 25%;
+}
+
+.side-right-top{
+    height: 40%;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-right-bottom{
+    flex-grow: 1;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+}
+
+.side-right-bottom-left{
+    width: 71%;
+    border: 2px solid #8b4513;
+    border-radius: 16px;
+    margin-right: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.side-left-center {
+    position: relative;
+    flex-grow: 1;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background-color: #8b4513;
+    z-index: 1;
+}
+
+.waves {
+    position: absolute;
+    bottom: 110px;
+    left: 0;
+    width: 200%;
+    height: 40%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: auto;
+    z-index: 3;
+    opacity: 1;
+}
+
+.wave1 {
+    animation: wave-animation 2s infinite linear;
+}
+
+.wave2 {
+    animation: wave-animation 3s infinite linear ;
+}
+
+.wave3 {
+    animation: wave-animation 4s infinite linear;
+}
+
+@keyframes wave-animation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.side-left-bottom img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+.side-left-bottom button{
+    background-color: transparent;
+    border: none;
+    margin-right: 4px;
+    height: 80px;
+    width: 80px;
+}
+
+.side-left-top p{
+    font-size: 36px;
+    margin-top: 20px;
+    margin-left: 32px;
+    font-weight: 600;
+    color: white;
+}
+.side-right-top img{
+    height: 325px;
+    width: 1390px;
+    border-radius: 16px;
+}
+
+
+
+.activity-title{
+    height: 10%;
+}
+.activity-title p{
+    font-size: 28px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: 600;
+    color: #8b4513;
+}
+.activity-month{
+    height: 10%;
+
+}
+.activity-month p{
+    font-size:22px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: 600;
+    color: #8b4513d1;
+    border-bottom: 2px solid #8b4513;
+    margin-right: 10px;
+}
+.days {
+    display: grid;
+    grid-template-columns: repeat(28, 25px);
+    grid-gap: 10px;
+}
+.days div {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff; /* Ensure text is visible */
+    border-radius: 5px;
+    margin-top: 7px;
+    margin-left: 7px;
+}
+
+
+/* badge gallery */
+.side-right-bottom-right {
+    width: 25%;
+    border-radius: 16px;
+    margin-left: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px; /* Added padding for spacing */
+}
+
+.badge-title {
+    height: 15%;
+    border-radius: 16px;
+    margin: 8px 8px 0 8px;
+    box-shadow: 
+        10px 10px 15px rgba(0, 0, 0, 0.2), /* Light shadow */
+        -5px -5px 10px rgba(255, 255, 255, 0.7), /* Highlight */
+        3px 3px 10px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge-title p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #8b4513;
+    margin: 0;
+}
+
+.badge-gallery {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 10px; 
+    padding: 10px; 
+    overflow-y: auto;
+    border-radius: 16px;
+    
+}
+
+.badge-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.badge {
+    width: 100%; /* Automatically scales to the grid cell */
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.badge img {
+    max-width: 100%;
+
+    object-fit: cover; /* Ensures the image fits within the div */
+    border-radius: 10px;
+}
+

@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="{% static 'authentication/standard-login/auth-style.css' %}" />
+    <title>TickMyWay - Sign in & Sign up Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <!-- Sign In Form -->
+          <form action="" method="POST" class="sign-in-form">
+            {% csrf_token %}
+            <h2 class="website-name">TickMyWay</h2> <!-- Website name -->
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              {{form.email}}
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              {{form.password}}
+            </div>
+            <!-- Buttons for selecting role -->
+              <button type="submit" class="btn" id="instructor-btn">
+                Sign in !
+              </button>
+          </form>
+          
+          <!-- Sign Up Form -->
+          <!-- I am tagging this for implementaion with wtf forms  ~Andre-->
+          <form action="" method="POST" class="sign-up-form">
+            {% csrf_token %}
+            <h2 class="title">Sign up</h2>
+            <!-- New fields added -->
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              {{signup.email}}
+            </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              {{signup.password}}
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              {{signup.confirm_password}}
+            </div>
+            <!-- Role selection buttons for sign up -->
+              <button type="submit" class="btn" name="role" value="instructor" id="instructor-signup-btn">
+                Sign up !!
+              </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here?</h3>
+            <p>
+              Join TickMyWay today! Create an account to start learning or teaching on our platform. Sign up now and become part of an amazing community!
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Sign up
+            </button>
+          </div>
+          <img src="{% static 'authentication/standard-login/3d.png' %}" class="image" alt="Sign Up Image" />
+        </div>
+
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us?</h3>
+            <p>
+              Welcome back! Sign in to your TickMyWay account and continue exploring new opportunities. Connect with instructors or students to achieve your goals.
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="{% static 'authentication/standard-login/bulb.png' %}" class="image" alt="Sign Up Image" />
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'authentication/standard-login/auth.js' %}"></script>
+  </body>
+</html>

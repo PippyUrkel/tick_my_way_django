@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{% static 'student-dashboard-new/student-dashboard/studentdashboard.css' %}">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .small-text-special {
+            font-size: 0.5px;
+            font-family: arial;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <!-- Side Panel -->
+        <div class="sidepanel">
+            <div class="navdiv">
+                <div class="logodiv">
+                    <img class="logo" src="{% static 'student-dashboard-new/images/site-icon.png'%}" alt="Logo">
+                    <span class="logo-text">TICKMYWAY</span>
+                </div>
+                <ul class="navbar">
+                    <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/home.png' %}"> Home</a></li>
+                    <li class="navmain"><a href="{% url 'student_courses' %}"><img src="{% static 'student-dashboard-new/images/courses.png' %}"> Courses</a></li>
+                    <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/mentoring.png' %}"> Mentor</a></li>
+                    <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li>
+                    <li class="navmain"><button class="shop-show-button"> <a href="{% url 'student_shop' %}"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Shop</a></button></li>
+
+                </ul>
+            </div>
+
+            <div class="reminders">
+                <div class="reminder-title">Simple Reminder List</div>
+                <div class="reminder-list">
+                    <div class="reminder-item">
+                        <div class="reminder-checkbox">
+                            <input type="checkbox" id="task1" />
+                            <label for="task1"></label>
+                        </div>
+                    <div class="reminder-task">Task 1</div>
+                    
+                    </div>
+
+                    <div class="reminder-item">
+                        <div class="reminder-checkbox">
+                            <input type="checkbox" id="task2" />
+                            <label for="task2"></label>
+                        </div>
+                    <div class="reminder-task">Task 3</div>
+                
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        <!-- Main Panel -->
+        <div class="mainpanel">
+            <div class="header">
+                <div class="searchbar">
+                    <img src="{% static 'student-dashboard-new/images/search-bar.png' %}" alt="Search" class="search-icon">
+                    <input type="text" placeholder="Search...">
+                </div>
+                
+
+                <div class="profile">
+                    <a href="{% url 'student_profile' %}">
+                    <img class="pfp" src="{% static 'student-dashboard-new/student-profile/image.jpeg' %}" alt="Profile Picture"></a>
+                    <h2 class="pfptitle"></h2>
+                </div>
+            </div>    
+
+            <section id="home" class="home">
+                <div class="homediv">
+                    <div class="left-section">
+                        <div class="row-1">
+                            <div class="left-top-1">
+                                <div class="platinum-count"> 
+                                    <img src="{% static 'student-dashboard-new/images/platinum.png' %}" alt="">
+                                    <div><h1>+ {{platinum}}</h1></div>
+                                </div>
+                                <div class="platinum-total"> 
+                                    <div class="earn-today">
+                                        <h1>Lvl {{level}}</h1> <!-- Add current amount of platinum in here-->
+                                    </div>
+                                    <div class="expense">
+                                        <!-- TO BE MULITPLIED-->
+                                        <div class="expense-div">
+                                            <div class="image-container">
+                                                <img src="{% static 'student-dashboard-new/images/up.png' %}" alt="Image 1" /> {{experience}} <!-- AMOUNT OF XP ADDED-->
+                                            </div>
+                                            <div class="text-container">
+                                                + {{experience}} XP  <!-- AMOUNT OF XP ADDED-->
+                                            </div>
+                                        </div>
+                                        <!--TO BE MULTIPLIED-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="left-top-2"> 
+                                    <div class="course-current">
+                                        <div class="coursename">
+                                            <img src="{% static 'student-dashboard-new/images/c1.jpeg' %}" alt=""> <h1>{{institute_name}}</h1>
+                                        </div>
+                                        <div class="courseprof">Current Strength: {{ current_strength }}</div>
+
+                                    </div>
+                                
+                                <div Topic class="course-current-info">
+                                    <div class="topic-div">Mentor count : {{mentor_count}}</div>
+                                    <div class="description-div">Student count : {{student_count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-2">
+                            Bottom Row Content
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <!--TO BE MULTIPLIED-->
+                        {% for mentor in mentors %}
+                            <div class="rectangle">
+                                <div class="top">
+                                    <img src="https://via.placeholder.com/100" alt="Profile Image">
+                                    <div class="name-industry">
+                                        <h2>{{mentor}}</h2>
+                                        <h3>Mentor</h3>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <button class="message-btn">Message</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!--TO BE MULTIPLIED-->
+                    </div>
+                    
+                    
+                </div>
+            </section>
+
+            
+            <br>
+            <section id="courses" class="courses">
+                <div class="coursesdiv">
+                    <!-- IS BEING MULTIPLIED -->
+                    {% for subject in subjects %}
+                        <div class="coursedetails1">
+                            <div class="card" style="border: 2px solid #659af7;">
+                                <div class="course-border-top" style="background-color: #659af7;">
+                                </div>
+                                <div class="img" style="background-color: #659af7;">
+                                </div>
+                                <span class="small-text-special">{{ subject.title }}</span>
+                                <p class="job">{{ subject.instructor }}</p>
+                                <button>
+                                    <a href="{% url 'student_courses' %}?title={{ subject.title }}&mentor={{ subject.instructor }}" class="btn btn-primary" style="color: white; text-decoration: none;">View Course</a>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- IS BEING MULTIPLIED -->
+                </div>
+            </section>
+            <br>
+            <section id="mentor" class="mentor">
+                <div class="mentordiv">
+                    {% for mentor in mentors %}
+                        <div class="mentorcard">
+                            <div class="mentorimg"></div>
+                            <span>About Me</span>
+                            <p class="mentorinfo">{{ mentor }}</p>
+                            <div class="mentorshare">
+                                <a href="#"><img src="{% static 'student-dashboard-new/images/github.png' %}" alt="GitHub" width="16" height="16"></a>
+                                <a href="#"><img src="{% static 'student-dashboard-new/images/twitter.png' %}" alt="Twitter" width="16" height="16"></a>
+                                <a href="#"><img src="{% static 'student-dashboard-new/images/instagram.png' %}" alt="Instagram" width="16" height="16"></a>
+                                <a href="#"><img src="{% static 'student-dashboard-new/images/youtube.png' %}" alt="YouTube" width="16" height="16"></a>
+                            </div>
+                            <button>Connect</button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+
+        
+    </div>
+</body>
+</html>

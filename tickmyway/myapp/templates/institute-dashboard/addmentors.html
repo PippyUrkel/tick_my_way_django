@@ -1,0 +1,160 @@
+{% extends 'institute-dashboard/base.html' %}
+
+{% block content %}
+<main class="content px-3 py-2">
+    <div class="container-fluid">
+        <div class="mb-3">
+            <h4>Institute Dashboard</h4>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 d-flex">
+                <div class="card flex-fill border-0 illustration">
+                    <div class="card-body p-0 d-flex flex-fill">
+                        <div class="row g-0 w-100">
+                            <div class="col-6">
+                                <div class="p-3 m-1">
+                                    <h4>Welcome Back {{admin_name}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-6 align-self-end text-end">
+                                <img src="{{ url_for('static', filename='institute-dashboard/images/image.png') }}" class="img-fluid illustration-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Total Earnings Card -->
+            <div class="col-12 col-md-6 d-flex">
+                <div class="card flex-fill border-0">
+                    <div class="card-body py-4">
+                        <div class="d-flex align-items-center">
+                            <!-- Text Content -->
+                            <div class="flex-grow-1">
+                                <h4 class="mb-2">Total No. of Mentors</h4>
+                                <p class="mb-2">{{ mentors | length }}</p>  <!-- Dynamic Total Mentors -->
+                            </div>
+                            <!-- Image -->
+                            <div>
+                                <img src="{{ url_for('static', filename='institute-dashboard/images/teacher.png') }}" alt="Mentors" class="img-fluid"  style="width: 100px; height: 100px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Students Section -->
+        <div class="card border-0">
+            <div class="card-header">
+                <h5 class="card-title">Add Mentors</h5>
+                <h6 class="card-subtitle text-muted">
+                    Add Mentors to your institution's dashboard with ease
+                </h6>
+            </div>
+            <div class="card-body">
+                <!-- Add Mentor Button -->
+                <button class="btn btn-primary mb-3" data-bs-toggle="collapse" data-bs-target="#addStudentForm" aria-expanded="false" aria-controls="addStudentForm">
+                    Add Mentor
+                </button>
+                <!-- Add Mentor Form -->
+                <div class="collapse" id="addStudentForm">
+                    <form id="studentForm" class="mb-3" method="POST" action="{{ url_for('institute.inst_add_mentor') }}">
+                        <div class="mb-3">
+                            <label for="studentName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="studentName" name="name" placeholder="Enter Mentor's name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="studentEmail" name="email" placeholder="Enter Mentor's email" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+                <!-- Mentor Table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sr No.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mentor in mentors %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ mentor.name }}</td>
+                            <td>{{ mentor.email }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const form = document.getElementById('studentForm');
+    const tableBody = document.querySelector('tbody');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const name = document.getElementById('studentName').value;
+        const email = document.getElementById('studentEmail').value;
+
+        // Create a FormData object to hold the form data
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+
+
+        console.log("DID IT FETCH BHAI")
+        // Send the form data using fetch with POST method
+        fetch('{{ url_for("institute.inst_add_mentor") }}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                // Create a new row in the table
+                const rowCount = tableBody.rows.length + 1;
+                const newRow = tableBody.insertRow();
+                newRow.innerHTML = `
+                    <th scope="row">${rowCount}</th>
+                    <td>${name}</td>
+                    <td>${email}</td>
+                `;
+                form.reset();
+                // Refresh the page
+                window.location.reload();
+            } else {
+                alert('Error adding mentor');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error adding mentor');
+        });
+    });
+</script>
+<style>
+    /* Ensure input fields remain white */
+    #addStudentForm .form-control {
+        background-color: white !important;
+        color: black;
+        border: 1px solid #ced4da;
+    }
+
+    /* Ensure input fields remain white when focused */
+    #addStudentForm .form-control:focus {
+        background-color: white !important;
+        color: black;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+</style>
+{% endblock %}

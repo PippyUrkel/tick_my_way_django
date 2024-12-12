@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'student-dashboard-new/student-courses/student-courses.css' %}">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="leftpane">
+        <div class="navdiv">
+            <div class="logodiv">
+                <img class="logo" src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Logo">
+                <span class="logo-text">TICKMYWAY</span>
+            </div>
+            <ul class="navbar">
+                <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/home.png' %}"> Home</a></li>
+                <li class="navmain"><a href="{% url 'student_courses' %}"><img src="{% static 'student-dashboard-new/images/courses.png' %}"> Courses</a></li>
+                <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/mentoring.png' %}"> Mentor</a></li>
+                <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li>
+                <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Shop</a></li>
+            </ul>
+        </div>
+
+        <div class="reminders">
+            <div class="reminder-title">Courses</div>
+            <div class="reminder-list">
+                {% for course in course_list %}
+                    <div class="reminder-item">
+                        <div class="circle"></div>
+                        <div class="reminder-task">{{ course.title }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="rightpane">
+        <div class="header">
+            <div class="searchbar">
+                <img src="{% static 'student-dashboard-new/images/search-bar.png' %}" alt="Search" class="search-icon">
+                <input type="text" placeholder="Search...">
+            </div>
+            
+
+            <div class="profile">
+                <a href="{% url 'student_profile' %}">
+                <img class="pfp" src="{% static 'student-dashboard-new/student-profile/image.jpeg' %}" alt="Profile Picture"></a>
+            </div>
+        </div>   
+        <div class="main-pane">
+            <div class="top-main">
+                <div class="top-main-image">
+                    <img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Course Image">
+                </div>
+                <div class="top-main-course-details">
+                    <div class="course-title">{{course_name}}</div>
+                    <div class="instructor-name">Instructor: {{mentor_name}}</div>
+                </div>
+            </div>
+            <div class="bottom-main">
+                <div class="bottom-left-pane">
+
+                    <div class="pending-work-title">Course Comments</div>
+
+                    <div class="pending-work-list">
+                        {% for comment in class_comments %}
+                            <div class="pending-task">
+                                <div class="date-box">
+                                    <img src="{% static 'student-dashboard-new/images/profile.png' %}" alt="Profile Picture" class="profile-img">
+                                </div>
+                                <div class="task-details">
+                                    <div class="task-title">{{ comment.message }}</div>
+                                    <div class="task-subtitle">{{ comment.email }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div class="bottom-right-pane">
+
+                    <div class="bottom-right-top-pane">
+                            <div class="notes-titles">
+                                <span>Uploaded Files</span>
+                                <button class="upload-btn">Upload a File</button>
+                                <input type="file" id="file-upload" hidden>
+                            </div>
+                            <div class="notes-uploaded">
+
+                                <!-- <div class="file-item">
+                                    <span class="file-name">example_file.pdf</span>
+                                    <span class="upload-date">Uploaded on: 06-Dec-2024</span>
+                                    <button class="delete-btn">Delete</button>
+                                </div>
+                                <div class="file-item">
+                                    <span class="file-name">example_file.pdf</span>
+                                    <span class="upload-date">Uploaded on: 06-Dec-2024</span>
+                                    <button class="delete-btn">Delete</button>
+                                </div> -->
+                            </div>
+                        
+                        
+                        
+                    </div>
+
+                    <div class="bottom-right-bottom-pane">
+
+                        <div class="bottom-right-bottom-left-pane">
+                            <button>
+                                <img src="{% static 'student-dashboard-new/images/roadmap_button.png' %}" alt="" style="border-radius: 10px;">
+                            </button>
+                        </div>
+
+                        <div class="bottom-right-bottom-right-pane">
+                            <div class="chat-section">
+                                <h3>Leave Your Doubts</h3>
+                                <div class="message-box"></div>
+                                <textarea placeholder="Type your message here..." rows="4" cols="30"></textarea>
+                                <button class="send-btn">Send</button>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+
+<script src="{% static 'student-dashboard-new/student-courses/student-courses.js' %}"></script>
+</body>
+</html>

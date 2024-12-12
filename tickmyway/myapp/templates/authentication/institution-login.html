@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Institution Login</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='authentication/admin-login/css/styles.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="login">
+            <div class="login__content">
+                <div class="login__img">
+                    <img src="{{ url_for('static', filename='authentication/admin-login/img/institute.png') }}" alt="">
+                </div>
+
+                <div class="login__forms">
+                    <form action="{{ url_for('auth.login_admin') }}" method="POST" class="login__registre" id="login-in">
+                        <h1 class="login__title">Sign In As Institute</h1>
+                        
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                            {{ form.email(class_="login__input", placeholder="Email") }}
+                        </div>
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            {{ form.password(class_="login__input", placeholder="Password") }}
+                        </div>
+
+                        <button type="submit" class="login__button">Sign In</button>
+
+                        <div>
+                            <span class="login__account">Don't have an Account ?</span>
+                            <span class="login__signin" id="sign-up">Sign Up</span>
+                        </div>
+                    </form>
+
+                    <form action="" class="login__create none" id="login-up">
+                        <h1 class="login__title">Create Account As Institute</h1>
+    
+                        <div class="login__box">
+                            <i class='bx bx-user login__icon'></i>
+                            <input type="text" placeholder="Institute Name" class="login__input" required>
+                        </div>
+    
+                        <div class="login__box">
+                            <i class='bx bx-at login__icon'></i>
+                            <input type="text" placeholder="Email" class="login__input" required>
+                        </div>
+
+                        <div class="login__box">
+                            <i class='bx bx-lock-alt login__icon'></i>
+                            <input type="password" placeholder="Password" class="login__input" required>
+                        </div>
+
+                        <button type="submit" class="login__button">Sign Up</button>
+
+                        <div>
+                            <span class="login__account">Already have an Account ?</span>
+                            <span class="login__signup" id="sign-in">Sign In</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--===== MAIN JS =====-->
+        <script src="{{url_for('static', filename='authentication/admin-login/js/main.js')}}"></script>
+    </body>
+</html>

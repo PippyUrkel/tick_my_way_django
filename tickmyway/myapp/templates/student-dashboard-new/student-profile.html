@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dashboard</title>
+    <link rel="stylesheet" href="{% static 'student-dashboard-new/student-profile/profile-dashboard.css' %}">
+</head>
+<body>
+    <div class="leftpane">
+        <div class="navdiv">
+            <div class="logodiv">
+                <img class="logo" src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Logo">
+                <span class="logo-text">TICKMYWAY</span>
+            </div>
+            <ul class="navbar">
+                <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/home.png' %}"> Home</a></li>
+                <li class="navmain"><a href="{% url 'student_courses' %}"><img src="{% static 'student-dashboard-new/images/courses.png' %}"> Courses</a></li>
+                <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/mentoring.png' %}"> Mentor</a></li>
+                <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li>
+                <li class="navmain"><a href="{% url 'student_shop' %}"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Shop</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="rightpane">
+        <div class="header">
+            <div class="searchbar">
+                <img src="{% static 'student-dashboard-new/images/search-bar.png' %}" alt="Search Icon" class="search-icon">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="profile">
+                <a href="profile">
+                    <img class="pfp" src="{% static 'student-dashboard-new/student-profile/image.jpeg' %}" alt="Profile Picture">
+                </a>
+            </div>
+        </div>
+        <div class="main-pane">
+            <div class="side-left">
+                <div class="side-left-top"> <p>2</p></div>
+                <div class="side-left-center">
+                    <div class="fill"></div>
+                    <div class="waves">
+                        <svg class="wave wave1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                            <path fill="#8b4513b0" d="M0,160L48,186.7C96,213,192,267,288,277.3C384,288,480,256,576,213.3C672,171,768,117,864,112C960,107,1056,149,1152,176C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                        </svg>
+                        <svg class="wave wave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                            <path fill="#8b4513b0" d="M0,96L48,128C96,160,192,224,288,245.3C384,267,480,245,576,218.7C672,192,768,160,864,160C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                        </svg>
+                        <svg class="wave wave3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                            <path fill="#8b4513b0" d="M0,64L48,101.3C96,139,192,213,288,234.7C384,256,480,224,576,186.7C672,149,768,107,864,101.3C960,96,1056,128,1152,154.7C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                
+                <div class="side-left-bottom"><button>
+                    <img src="{% static 'student-dashboard-new/student-profile/image.jpeg' %}" alt="">
+                </button>
+                </div>
+            </div>
+            <div class="side-right">
+                <div class="side-right-top">
+                    <img src="{% static 'student-dashboard-new/images/banner_test.png' %}" alt="">
+                </div>
+                <div class="side-right-bottom">
+                    <div class="side-right-bottom-left">
+                        <div class="activity-title"> <p>Your Activity</p></div>
+                        <div class="activity-month"> <p>Month,Year</p> </div>
+                        <div class="days" id="days-container">
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="side-right-bottom-right">
+                        <div class="badge-title">
+                            <p>Badges</p>
+                        </div>
+                        <div class="badge-gallery">
+                            <!-- Badge Grid with Images -->
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 1"></div>
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 2"></div>
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 3"></div>
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 4"></div>
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 5"></div>
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 6"></div>
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 7"></div>
+                            <div class="badge"><img src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Badge 8"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="{% static 'student-dashboard-new/student-profile/profile-dashboard.js' %}"></script>
+</body>
+</html>

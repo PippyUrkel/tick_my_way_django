@@ -1,0 +1,477 @@
+body{
+    background-color: #f8d9b0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+.leftpane{
+    width: 20%;
+    background-color: #ffffffa8;
+    margin: 8px;
+    border-radius: 16px;
+}
+
+.rightpane{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.header-bar{
+    height: 10%;
+    background-color: white;
+    margin: 8px;
+    border-radius: 16px;
+}
+
+.main-pane{
+    flex-grow: 1;
+    margin: 8px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+}
+
+.reminders {
+    flex-grow: 1;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 8px;
+}
+    
+.reminder-title {
+    height: 45px;
+    color: black;
+    font-size: 1.4rem;
+    margin: 8px;
+    border-bottom: 1px solid black;
+    padding-top: 14px;
+    padding-left: 12px;
+    background-color: #ffffffbb;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.reminder-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+.reminder-list::-webkit-scrollbar{
+    display: none;
+}
+
+  /* Each reminder item */
+.reminder-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+
+.reminder-task {
+    flex-grow: 1;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+  /* Right Div - Checkbox */
+.reminder-checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.reminder-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.reminder-checkbox label {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #d3d3d3;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    border: none;
+} 
+
+.reminder-checkbox input[type="checkbox"]:checked + label {
+    background-color: rgb(172, 139, 97);
+}
+
+.reminder-checkbox input[type="checkbox"]:checked + label:before {
+    content: '✔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logodiv {
+    display: flex;
+    border-bottom: 2px solid black;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+.logodiv .logo {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.logodiv .logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 15px;
+    padding-right: 20px; /* Add some space to the right */
+}
+
+
+.pfptitle {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    padding: 15px;
+}
+
+.navbar ,.navbar1{
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.navbar li,.navbar1 li {
+    background-color: rgb(255, 255, 255);
+    font-size: 17px;
+    padding: 13px 0;
+    padding-left: 12px;
+    margin-bottom: 15px;
+    position: relative; /* Allow positioning of the pseudo-element */
+    overflow: hidden; /* Hide the pseudo-element when outside */
+    border-radius: 5px; /* Smooth edges like a button */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+    font-weight: bold;
+    color: #000; /* Default text color */
+}
+
+.navbar li a, .navbar1 li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit; /* Inherit text color */
+    font-size: 16px;
+    position: relative; /* Ensure content stays above the pseudo-element */
+    z-index: 1;
+}
+
+.navbar li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%; /* Start with 0% width */
+    height: 100%;
+    background-color: #a269ec; /* Fill color */
+    transition: width 0.6s ease-in-out; /* Smoothly expand the width */
+    z-index: 0; /* Behind the content */
+}
+
+.navbar li:hover::before {
+    width: 100%; /* Expand to full width on hover */
+}
+
+/* .navbar li:hover {
+    transform: scale(1.05); /* Slight zoom effect 
+} */
+
+.navbar li:hover a {
+    color: #ffffff; /* Change text color to white on hover */
+}
+
+
+.navdiv {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 8px;
+}
+
+
+.navbar img , .navbar1 img {
+    height: 30px;
+    width: 30px;
+}
+
+.navbar li i, .navbar1 li i {
+    font-size: 20px;
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.circle{
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: rgb(250, 118, 95);
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;  /* Align everything to the right */
+    align-items: center;  /* Vertically center the items */
+    margin-bottom: 40px;
+    position: relative;
+    padding: 10px;
+    width: auto;
+    background-color: white;
+    margin: 8px;
+    border-radius: 16px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-left: 3px solid #000000; 
+    z-index: 2; /* Ensure profile stays above other elements */
+}
+
+.searchbar {
+    height: 67px;
+    width: 250px;
+    border-radius: 12px;
+    margin-right: 16px; /* Add some space between search and profile */
+    border: 1px solid antiquewhite;
+    padding-left: 12px;
+    font-size: 1rem;
+    background-color: antiquewhite;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1; /* Keep it below the profile */
+}
+
+
+
+.searchbar img {
+    height: 48px; /* Adjust size of the image */
+    width: 48px;
+    border-radius: 50%; /* Optional, for a circular icon */
+}
+.searchbar input::placeholder{
+    color: #000;
+}
+
+.searchbar input {
+    height: 53px;
+    width: 200px;
+    border-radius: 12px;
+    border: none; /* Remove inner border */
+    outline: none; /* Remove outline on focus */
+    padding-left: 10px; /* Add space within the input field */
+    font-size: 1rem;
+    background-color: transparent; /* Make input field background transparent */
+    color: white; /* Ensure text is visible */
+}
+
+
+
+.pfp {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.banner{
+    width: 65%;
+    background-color: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.badge{
+    flex-grow: 1;
+    background-color: white;
+    border-radius: 16px;
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.banner-title{
+    border-bottom: 1px solid black;
+    align-items: center;
+    height: 10%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+    margin: 8px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.banner-title p{
+    font-size: 36px;
+    font-weight: bold;
+    margin-left: 12px;
+    margin-top: 18px;
+    flex-shrink: 0;
+}
+
+.banner-gallery {
+    max-height: 600px; /* Set a maximum height */
+    overflow-y: auto;
+    overflow-x: auto; /* Enable vertical scrolling */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+    margin: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Add some spacing between banners */
+}
+
+.banner-gallery::-webkit-scrollbar{
+    display: none;
+    
+}
+
+.banner::-webkit-scrollbar {
+    display: none;
+}
+
+.banner-img{
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+    margin: 4px;
+    height: 180px;;
+}
+.banner-img  button{
+    border: none;
+    background-color: white;
+    height: 180px;
+}
+.banner-img img{
+    height: 160px;
+    width: 920px;
+    margin-top: 3px;
+    border-radius: 16px
+}
+
+.banner-buy{
+    height: 10%;
+    margin: 4px 8px 8px 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+    border-radius: 0px 0px 8px 8px;
+}
+.banner-buy-button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: green;
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+    border-radius: 8px 8px 8px 8px;
+}
+
+.banner-img button{
+    border-radius: 8px;
+}
+
+.badge-title{
+    border-bottom: 1px solid black;
+    height: 10%;
+    margin: 8px 8px 4px 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+    border-radius: 8px 8px 0px 0px;
+}
+
+.badge-title p{
+    font-size: 36px;
+    font-weight: bold;
+    margin-left: 12px;
+    margin-top: 18px;
+}
+
+.badge-gallery {
+    max-height: 500px; /* Set a maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin: 4px 8px;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap within the space */
+    gap: 10px; /* Add spacing between badges */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+}
+
+.badge-gallery::-webkit-scrollbar{
+    display: none;
+}
+
+.badge-buy{
+    height: 10%;
+    margin: 4px 8px 8px 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+    border-radius: 8px;
+}   
+
+.badge-buy-button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: green;
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+    border-radius: 8px 8px 8px 8px;
+}
+
+.badge-img{
+    height: 120px;
+    width: 120px;
+    margin: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.452);
+    border-radius: 8px;
+}
+
+.badge-img img{
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+}   
+
+.badge-img button{
+    height: 120px;
+    width: 120px;
+    border: none;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.banner-img button, .badge-img button {
+    border: none; 
+    outline: none; 
+}
+
+.banner-img button:focus, .badge-img button:focus {
+    outline: none; 
+}

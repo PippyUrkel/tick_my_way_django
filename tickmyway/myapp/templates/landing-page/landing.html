@@ -1,0 +1,568 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TickMyWay | Learning Dashboard</title>
+    <link rel="stylesheet" href="{% static 'landing-page/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /*here  */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            background-image: url("6213209.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: blur(5px);
+        }
+
+
+        /* Body and Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #202121;
+            color: #4E3B31; /* Brown text color */
+            overflow-x: hidden
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            background-color: #1d1d1d;
+            box-shadow: 0  1px 10px #202121;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sign-in-btn {
+            background-color: #ff6347;
+            padding: 0.8rem 2rem;
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #e5533d;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            padding: 0 20px;
+            background-color: #202121;
+            color: #dcc0bb;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeInLeft 2s ease-in-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background-color: #ff5334;
+            color: white;
+            margin-left: 20px;
+            padding: 1rem 2rem;
+
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e5533d;
+            transform: translateY(-5px);
+        }
+
+        .hero img {
+            width: 700px;
+            height: auto;
+            animation: fadeInRight 2s ease-in-out forwards;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+ /* Contact Section */
+ .contact-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 20px;
+    background-color: #262627; /* Change the background color to match the hero section */
+}
+
+
+        .contact-info {
+            width: 40%;
+            font-size: 1rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            color: #ff5334;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .contact-info a {
+            color: #ff5334;
+            text-decoration: none;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            width: 50%;
+            background-color: #323334;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            color: #ff5334;
+            margin-bottom: 30px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background-color: #e5533d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #e5533d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #e5533d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info, .contact-form {
+                width: 90%;
+                margin-bottom: 30px;
+            }
+        }
+        /* Animations */
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Roadmap Section */
+        .roadmap-section {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #faebd7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .roadmap-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #4E3B31;
+        }
+
+        .roadmap {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 400px;
+        }
+
+        .path {
+            stroke-dasharray: 3000;
+            stroke-dashoffset: 3000;
+            animation: draw 4s ease forwards;
+            animation-play-state: paused;
+            filter: drop-shadow(0 0 5px rgba(255, 99, 71, 0.3));
+        }
+
+        .milestone {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            animation-play-state: paused;
+            cursor: pointer;
+        }
+
+        .node-circle {
+            fill: #ff6347;
+            r: 25;
+            transition: all 0.3s ease;
+        }
+
+        .node-circle:hover {
+            r: 30;
+            fill: #e5533d;
+        }
+
+        .node-pulse {
+            fill: #ff6347;
+            opacity: 0.2;
+            animation: pulse 3s infinite;
+        }
+
+        .milestone text {
+            font-size: 18px;
+            font-weight: 600;
+            fill: #4E3B31;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% { r: 25; opacity: 0.2; }
+            50% { r: 45; opacity: 0.1; }
+            100% { r: 25; opacity: 0.2; }
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-content button {
+            background: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background: #e5533d;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .hero-content {
+                margin-bottom: 20px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .roadmap {
+                height: 300px;
+            }
+
+            .milestone text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="background"></div>
+        <nav>
+            <div class="logo">
+                <img src="{% static 'constants/site-icon.png' %}" alt="Logo">
+                <h1>TickMyWay</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="sign-in-btn">Sign In</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+    <div class="hero-content" style="padding: 0 20px;">
+        <h1 style="padding-left: 20px; padding-right: 20px;">Empower Your Learning Journey</h1>
+        <p style="padding-left: 20px; padding-right: 20px;">Track, manage, and enhance your learning experience with TickMyWay. Stay organized and motivated every step of the way.</p>
+        <a href="/login" class="cta-button">Get Started</a>
+    </div>
+    <img src="{% static 'authentication/standard-login/3d.png' %}" alt="Hero Image">
+</section>
+
+        <!-- Roadmap Section -->
+        <section class="roadmap-section" id="features">
+            <h2>Your Learning Journey</h2>
+            <div class="roadmap">
+                <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+                    <path class="path" d="M 100,200 C 300,100 500,300 600,200 C 700,100 900,300 1100,200" fill="none" stroke="#ff6347" stroke-width="5"/>
+                    <g class="milestone milestone-1" onclick="showModal('Roadmap Based Learning', 'Plan and organize your learning goals effectively using structured roadmaps.')">
+                        <circle class="node-pulse" cx="100" cy="200"></circle>
+                        <circle class="node-circle" cx="100" cy="200"></circle>
+                        <text x="100" y="150" text-anchor="middle">Roadmap for learning</text>
+                    </g>
+                    <g class="milestone milestone-2" onclick="showModal('Tracking Progress', 'Monitor your progress and stay on track with detailed analytics.')">
+                        <circle class="node-pulse" cx="600" cy="200"></circle>
+                        <circle class="node-circle" cx="600" cy="200"></circle>
+                        <text x="600" y="150" text-anchor="middle">Tracking Progress</text>
+                    </g>
+                    <g class="milestone milestone-3" onclick="showModal('Gamification', 'Stay motivated through rewards and achievements.')">
+                        <circle class="node-pulse" cx="1100" cy="200"></circle>
+                        <circle class="node-circle" cx="1100" cy="200"></circle>
+                        <text x="1100" y="150" text-anchor="middle">Gamification</text>
+                    </g>
+                </svg>
+            </div>
+        </section>
+    
+    <section class="contact-section">
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p><strong>Address:</strong>Fr. Agnel Ashram
+                Mary's Road,
+                Bandra (West),
+                Mumbai - 400050,
+                Maharashtra, India.</p>
+            <p><strong>Email:</strong> <a href="#">TickMyWay@gmail.com</a></p>
+            <p><strong>Phone:</strong>9975462341</p>
+            <p><strong>Hours:</strong></p>
+            <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+            <p>Saturday: 10:00 AM - 3:00 PM</p>
+            <p>Sunday: Closed</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="#" method="POST">
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="email" name="email" placeholder="Your email" required>
+                <textarea name="message" placeholder="Your message" rows="6" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 TickMyWay | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p>Follow us: <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a></p>
+    </footer>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal(title, description) {
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+        }
+
+        function animateRoadmap() {
+            const path = document.querySelector('.path');
+            const milestones = document.querySelectorAll('.milestone');
+
+            path.style.animationPlayState = 'running';
+            milestones.forEach((milestone, index) => {
+                milestone.style.animationDelay = `${index * 0.8}s`;
+                milestone.style.animationPlayState = 'running';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const roadmapSection = document.querySelector('.roadmap-section');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateRoadmap();
+                        observer.unobserve(roadmapSection);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(roadmapSection);
+        });
+    </script>
+</body>
+</html>
