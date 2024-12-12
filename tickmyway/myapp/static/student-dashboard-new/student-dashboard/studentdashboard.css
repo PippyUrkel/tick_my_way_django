@@ -6,7 +6,7 @@ html {
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #faebd7;
+    background-color: #F5F5F5;
     color: white;
 }
 
@@ -21,8 +21,7 @@ body .small-text {
 .sidepanel {
     width: 20%;
     height: 100vh;
-    background-color: #8b451380;
-    backdrop-filter: blur(10px);
+    background-color: #afd4fd;
     border-radius: 15px;
     padding-left: 10px;
     margin: auto;
@@ -63,10 +62,10 @@ body .small-text {
     width: 250px;
     border-radius: 12px;
     margin: 20px; /* Add some space between search and profile */
-    border: 1px solid antiquewhite;
+    border: 1px solid #4A90E2;
     padding-left: 12px;
     font-size: 1rem;
-    background-color: antiquewhite;
+    background-color: #4A90E2;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -113,7 +112,7 @@ body .small-text {
 
 .logodiv .logo {
     height: 80px;
-    width: 80px;
+    width: 350px;
     border-radius: 50%;
 }
 
@@ -139,10 +138,11 @@ body .small-text {
     list-style: none;
     padding: 0;
     margin: 20px 0;
+    margin-top: 25px;
 }
 
 .navbar li,.navbar1 li {
-    background-color: rgb(255, 255, 255);
+    background-color: #F5F5F5;
     font-size: 17px;
     padding: 13px 0;
     padding-left: 12px;
@@ -173,7 +173,7 @@ body .small-text {
     left: 0;
     width: 0%; /* Start with 0% width */
     height: 100%;
-    background-color: #e4dd9f; /* Fill color */
+    background-color: #4A90E2; /* Fill color */
     transition: width 0.6s ease-in-out; /* Smoothly expand the width */
     z-index: 0; /* Behind the content */
 }
@@ -192,14 +192,17 @@ body .small-text {
 
 
 .navdiv {
-    background-color: white;
+    background-color: #F5F5F5;
     border-radius: 15px;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-
+.navmain{
+    margin-top: 35px;
+    padding: 15px;
+}
 .navbar img , .navbar1 img {
     height: 30px;
     width: 30px;
@@ -209,6 +212,7 @@ body .small-text {
     font-size: 20px;
     color: #000000;
     transition: color 0.3s ease;
+    margin: 25px;
 }
 
 .navdiv2 {
@@ -375,11 +379,10 @@ body .small-text {
 }
 
 .mainpanel {
-    width: 80%;
+    width: 76%;
     margin-left: 22%;
     padding: 20px;
     border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0);
     overflow-y: auto;
     height: 100vh;
     position: relative;
@@ -428,9 +431,7 @@ body::-webkit-scrollbar {
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
     height: 700px; /* Fixed height for layout */
 }
 
@@ -440,6 +441,7 @@ body::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     gap: 20px; /* Spacing between rows */
+    height: 700px;
 }
 
 /* Top Row in Left Section */
@@ -479,6 +481,7 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     text-align: center;
+    height: fit-content;
 }
 
 /* Right Section */
@@ -496,13 +499,13 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     text-align: center;
+    height: 760px;
 }
 
 /* Responsive Layout */
 @media (max-width: 768px) {
     .homediv {
         flex-direction: column;
-        height: auto; /* Allow dynamic height on smaller screens */
     }
     .left-section, .right-section {
         flex: none;
@@ -548,7 +551,8 @@ body::-webkit-scrollbar {
     padding: 10px;
     align-items: center;
     gap: 15px; /* Space between the image and text */
-    background-color: beige; /* Background color for inner padding */
+    background-color: #4A90E2; /* Background color for inner padding */
+    border-radius: 0px 8px 0px 0px;
 }
 
 .rectangle .top img {
@@ -573,10 +577,11 @@ body::-webkit-scrollbar {
     font-size: 1rem;
     font-weight: bold;
     text-align: left;
+    color: #ffffff;
 }
 .rectangle .name-industry h3 {
     margin: 0;
-    color: #5e5c5c;
+    color: #c0c0c0;
     font-size: 0.9rem;
     font-weight: bold;
     text-align: left;
@@ -588,10 +593,10 @@ body::-webkit-scrollbar {
 }
 
 .message-btn{
-    background-color: #a269ec;
-    color: white;
+    background-color: white;
+    color: #4A90E2;
     padding: 8px 12px;
-    border: none;
+    border: 1px solid #4A90E2;
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9rem;
@@ -602,8 +607,8 @@ body::-webkit-scrollbar {
 
 
 .message-btn:hover{
-    background-color: #a269ecb4;
-    color: #6a11cb;
+    background-color: #4A90E2;
+    color: white;
 }
 
 
@@ -637,7 +642,7 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Ensure the image and text are spaced apart */
-    background-color: #f0bc2f;
+    background-color: #FFA500;
     border-radius: 10px;
     text-align: right; /* Align text to the right */
     width: 100%;
@@ -671,7 +676,7 @@ body::-webkit-scrollbar {
 .platinum-total{
     width: 100%;
     height: 65%;
-    background-color: #f0bc2f;
+    background-color: #FFA500;
     border-radius: 10px;
     padding: auto;
     margin: 10px;
@@ -743,28 +748,31 @@ body::-webkit-scrollbar {
 }
 .coursename{
     display: flex;
-    background-color: #659af7;
+    background-color: #ffffff;
     border-radius: 10px 10px 0 0;
     height: 125px;
+    color: #4A90E2;
+    border: 1px solid #4A90E2;
 }
 .coursename h1{
     margin-top: 20px;
     margin-left: 10px;
     font-weight: bold;
-    color: white;
+    color: #4A90E2;
 }
 .courseprof{
     display: flex;
     padding-top: 10px;
     padding-bottom: 4px;
     padding-left: 12px;
-    background-color: #508efa;
+    background-color: #ffffff;
     border-radius: 0 0 10px 10px;
+    border: 1px solid #4A90E2;
 }
 
 .course-current-info{
     width: 100%;
-    background-color: #2575fc;
+    background-color: #ffffff;
     height: auto;
     flex-grow: 1;
     border-radius: 10px;
@@ -772,6 +780,7 @@ body::-webkit-scrollbar {
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
+    border: 1px solid #4A90E2;
 }
 
 .topic-div{
@@ -779,16 +788,17 @@ body::-webkit-scrollbar {
     border-radius: 10px 10px 0 0;
     display: flex;
     margin: 10px;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid #4A90E2;
     padding: 10px;
 }
 .description-div{
     flex-grow: 1;
     border-radius:10px;
     display: flex;
-    background-color: #659af7;
+    background-color: #ffffff;
     margin: 10px;
     padding: 10px;
+    color: #4A90E2;
 }
 
 
@@ -876,7 +886,7 @@ body::-webkit-scrollbar {
     border-bottom-left-radius: 20px;
     display: flex;
     flex-direction: column;
-    border: 2px solid #a269ec;
+    border: 2px solid #8b4513;
     margin: 15px;
     flex-shrink: 0;
 }
@@ -898,9 +908,9 @@ body::-webkit-scrollbar {
 }
 
 .mentorcard .mentorimg {
-    width: 5em;
-    height: 5em;
-    background: #a269ec;
+    width: 7em;
+    height: 7em;
+    background: #8b4513;
     margin: auto;
 }
 
@@ -923,15 +933,19 @@ body::-webkit-scrollbar {
     border-radius: 25px;
     border: none;
     font-weight: bold;
-    background: #a269ec;
-    color: rgb(0, 0, 0);
+    background: antiquewhite;
+    color: #8b4513;
+}
 
+.mentorcard button:hover{
+    color: antiquewhite;
+    background-color: #8b4513;
 }
 
 .shop-show-button{
     width: 100%;
     border: none;
-    background-color: white;
+    background-color: #F5F5F5;
     font-size: 1rem;
     font-weight: 600;
 }

@@ -14,13 +14,13 @@
         <div class="navdiv">
             <div class="logodiv">
                 <img class="logo" src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Logo">
-                <span class="logo-text"><a href="{% url 'student_dashboard' %}" style="color: inherit; text-decoration: none;">TICKMYWAY</a></span>
+                <!-- <span class="logo-text"><a href="{% url 'student_dashboard' %}" style="color: inherit; text-decoration: none;">TICKMYWAY</a></span> -->
             </div>
             <ul class="navbar">
                 <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/home.png' %}"> Home</a></li>
                 <li class="navmain"><a href="{% url 'student_courses' %}"><img src="{% static 'student-dashboard-new/images/courses.png' %}"> Courses</a></li>
                 <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/mentoring.png' %}"> Mentor</a></li>
-                <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li>
+                <!-- <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li> -->
                 <li class="navmain"><a href="#shop"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Shop</a></li>
             </ul>
         </div>
@@ -28,15 +28,15 @@
 
     <div class="rightpane">
         <div class="header">
-            <div class="searchbar">
+            <!-- <div class="searchbar">
                 <img src="{% static 'student-dashboard-new/images/search-bar.png' %}" alt="Search" class="search-icon">
                 <input type="text" placeholder="Search...">
-            </div>
+            </div> -->
             
 
             <div class="profile">
                 <a href="#profile">
-                <img class="pfp" src="image.jpeg" alt="Profile Picture"></a>
+                <img class="pfp" src="{% static 'student-dashboard-new/images/mentoring.png' %}" alt="Profile Picture"></a>
             </div>
         </div>   
         <div class="main-pane">

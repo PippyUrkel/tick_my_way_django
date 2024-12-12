@@ -13,35 +13,25 @@
         <div class="navdiv">
             <div class="logodiv">
                 <img class="logo" src="{% static 'student-dashboard-new/images/site-icon.png' %}" alt="Logo">
-                <span class="logo-text">TICKMYWAY</span>
+                <!-- <span class="logo-text">TICKMYWAY</span> -->
             </div>
             <ul class="navbar">
                 <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/home.png' %}"> Home</a></li>
                 <li class="navmain"><a href="{% url 'student_courses' %}"><img src="{% static 'student-dashboard-new/images/courses.png' %}"> Courses</a></li>
                 <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/mentoring.png' %}"> Mentor</a></li>
-                <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li>
+                <!-- <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li> -->
                 <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Shop</a></li>
             </ul>
         </div>
 
-        <div class="reminders">
-            <div class="reminder-title">Courses</div>
-            <div class="reminder-list">
-                {% for course in course_list %}
-                    <div class="reminder-item">
-                        <div class="circle"></div>
-                        <div class="reminder-task">{{ course.title }}</div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+        
     </div>
     <div class="rightpane">
         <div class="header">
-            <div class="searchbar">
+            <!-- <div class="searchbar">
                 <img src="{% static 'student-dashboard-new/images/search-bar.png' %}" alt="Search" class="search-icon">
                 <input type="text" placeholder="Search...">
-            </div>
+            </div> -->
             
 
             <div class="profile">

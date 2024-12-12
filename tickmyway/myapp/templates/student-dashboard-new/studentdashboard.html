@@ -17,55 +17,34 @@
     </style>
 </head>
 <body>
-    <div class="outer">
+    
         <!-- Side Panel -->
         <div class="sidepanel">
             <div class="navdiv">
                 <div class="logodiv">
                     <img class="logo" src="{% static 'student-dashboard-new/images/site-icon.png'%}" alt="Logo">
-                    <span class="logo-text">TICKMYWAY</span>
+                    <!-- <span class="logo-text">TICKMYWAY</span> -->
                 </div>
                 <ul class="navbar">
                     <li class="navmain"><a href="{% url 'student_dashboard' %}"><img src="{% static 'student-dashboard-new/images/home.png' %}"> Home</a></li>
                     <li class="navmain"><a href="{% url 'student_courses' %}"><img src="{% static 'student-dashboard-new/images/courses.png' %}"> Courses</a></li>
                     <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/mentoring.png' %}"> Mentor</a></li>
-                    <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li>
+                    <!-- <li class="navmain"><a href="#"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Sandbox</a></li> -->
                     <li class="navmain"><button class="shop-show-button"> <a href="{% url 'student_shop' %}"><img src="{% static 'student-dashboard-new/images/roadmap.png' %}"> Shop</a></button></li>
 
                 </ul>
-            </div>
+        </div>
 
-            <div class="reminders">
-                <div class="reminder-title">Simple Reminder List</div>
-                <div class="reminder-list">
-                    <div class="reminder-item">
-                        <div class="reminder-checkbox">
-                            <input type="checkbox" id="task1" />
-                            <label for="task1"></label>
-                        </div>
-                    <div class="reminder-task">Task 1</div>
-                    
-                    </div>
-
-                    <div class="reminder-item">
-                        <div class="reminder-checkbox">
-                            <input type="checkbox" id="task2" />
-                            <label for="task2"></label>
-                        </div>
-                    <div class="reminder-task">Task 3</div>
-                
-                    </div>
-                </div>
-            </div>
+            
             </div>
 
         <!-- Main Panel -->
         <div class="mainpanel">
             <div class="header">
-                <div class="searchbar">
+                <!-- <div class="searchbar">
                     <img src="{% static 'student-dashboard-new/images/search-bar.png' %}" alt="Search" class="search-icon">
                     <input type="text" placeholder="Search...">
-                </div>
+                </div> -->
                 
 
                 <div class="profile">
@@ -118,7 +97,23 @@
                             </div>
                         </div>
                         <div class="row-2">
-                            Bottom Row Content
+                            <div class="coursesdiv">
+                                {% for subject in subjects %}
+                                    <div class="coursedetails1">
+                                        <div class="card" style="border: 2px solid #659af7;">
+                                            <div class="course-border-top" style="background-color: #659af7;">
+                                            </div>
+                                            <div class="img" style="background-color: #659af7;">
+                                            </div>
+                                            <span class="small-text-special">{{ subject.title }}</span>
+                                            <p class="job">{{ subject.instructor }}</p>
+                                            <button>
+                                                <a href="{% url 'student_courses' %}?title={{ subject.title }}&mentor={{ subject.instructor }}" class="btn btn-primary" style="color: white; text-decoration: none;">View Course</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                     <div class="right-section">
@@ -146,9 +141,8 @@
 
             
             <br>
-            <section id="courses" class="courses">
+            <!-- <section id="courses" class="courses">
                 <div class="coursesdiv">
-                    <!-- IS BEING MULTIPLIED -->
                     {% for subject in subjects %}
                         <div class="coursedetails1">
                             <div class="card" style="border: 2px solid #659af7;">
@@ -164,11 +158,10 @@
                             </div>
                         </div>
                     {% endfor %}
-                    <!-- IS BEING MULTIPLIED -->
                 </div>
-            </section>
+            </section> -->
             <br>
-            <section id="mentor" class="mentor">
+            <!-- <section id="mentor" class="mentor">
                 <div class="mentordiv">
                     {% for mentor in mentors %}
                         <div class="mentorcard">
@@ -185,10 +178,10 @@
                         </div>
                     {% endfor %}
                 </div>
-            </section>
+            </section> -->
         </div>
 
         
-    </div>
+    
 </body>
 </html>
