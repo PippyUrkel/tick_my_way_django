@@ -67,20 +67,37 @@ def login(request):
                 confirm_password = signup.cleaned_data['confirm_password']
                 print(f"Signup - Email: {email}, Password: {password}, Confirm Password: {confirm_password}")
                 
+                # Check if passwords match
+                if password != confirm_password:
+                    messages.error(request, 'Passwords do not match.')
+                    return redirect('signup')
+                
                 # Check if user already exists
                 check_user = lookup_collection.find_one({"email": email})
                 if check_user is not None:
                     messages.error(request, 'User already exists.')
                     return redirect('login')
-                else:
-                    # Insert new user into MongoDB
+                
+                # Insert new user into MongoDB
+                try:
+                    access_token = create_access_token(email)
                     new_user = {
                         "email": email,
                         "password": password
                     }
                     users_collection.insert_one(new_user)
-                    messages.success(request, 'Signup successful. Please log in.')
-                    return redirect('login')
+                    
+                    response = redirect('student_dashboard')
+                    response.set_cookie(
+                        'access_token',
+                        access_token,
+                        httponly=True,
+                        max_age=3600 * 12  # 12 hours
+                    )
+                    return response
+                except Exception as e:
+                    messages.error(request, 'An error occurred during signup. Please try again.')
+                    return redirect('signup')
 
     else:
         form = LoginForm()

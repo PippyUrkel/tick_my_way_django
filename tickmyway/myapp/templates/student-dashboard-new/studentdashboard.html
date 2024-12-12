@@ -82,11 +82,11 @@
                             <div class="left-top-1">
                                 <div class="platinum-count"> 
                                     <img src="{% static 'student-dashboard-new/images/platinum.png' %}" alt="">
-                                    <div><h1>+ {{platinum}}</h1></div>
+                                    <div><h1>+ {{user_platinum}}</h1></div>
                                 </div>
                                 <div class="platinum-total"> 
                                     <div class="earn-today">
-                                        <h1>Lvl {{level}}</h1> <!-- Add current amount of platinum in here-->
+                                        <h1>Lvl {{user_level}}</h1> <!-- Add current amount of platinum in here-->
                                     </div>
                                     <div class="expense">
                                         <!-- TO BE MULITPLIED-->
@@ -95,7 +95,7 @@
                                                 <img src="{% static 'student-dashboard-new/images/up.png' %}" alt="Image 1" /> {{experience}} <!-- AMOUNT OF XP ADDED-->
                                             </div>
                                             <div class="text-container">
-                                                + {{experience}} XP  <!-- AMOUNT OF XP ADDED-->
+                                                + {{user_experience}} XP  <!-- AMOUNT OF XP ADDED-->
                                             </div>
                                         </div>
                                         <!--TO BE MULTIPLIED-->
@@ -105,15 +105,15 @@
                             <div class="left-top-2"> 
                                     <div class="course-current">
                                         <div class="coursename">
-                                            <img src="{% static 'student-dashboard-new/images/c1.jpeg' %}" alt=""> <h1>{{institute_name}}</h1>
+                                            <img src="{% static 'student-dashboard-new/images/c1.jpeg' %}" alt=""> <h1>STREAK ️‍🔥</h1>
                                         </div>
-                                        <div class="courseprof">Current Strength: {{ current_strength }}</div>
+                                        <div class="courseprof"></div>
 
                                     </div>
                                 
                                 <div Topic class="course-current-info">
-                                    <div class="topic-div">Mentor count : {{mentor_count}}</div>
-                                    <div class="description-div">Student count : {{student_count}}</div>
+                                    <div class="topic-div">Last Active : {{user_lastactive}}</div>
+                                    <div class="description-div">Active Streak : {{user_streak}}</div>
                                 </div>
                             </div>
                         </div>

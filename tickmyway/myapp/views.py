@@ -15,6 +15,9 @@ from django.core.files.storage import default_storage
 import os
 from docx import Document
 import mimetypes
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from django.http import JsonResponse
 
 # MongoDB connection details
 uri = 'mongodb+srv://andre:WangoTango238@tick-my-way.fiy3g.mongodb.net/?retryWrites=true&w=majority&appName=tick-my-way'  # Replace with your actual MongoDB URI
@@ -94,42 +97,48 @@ def onboarding_quiz(request):
 def dashboard(request):
     return render(request, 'student-dashboard-new/studentdashboard.html', {})
 
-@jwt_required
 def student_dashboard(request):
-    user = request.user
+    token = request.COOKIES.get('access_token')
 
-    # For now, simulate user information
-    user_email = "demo_user@example.com"  # Replace this with a mock or default value
-    user_institute = "Demo University"
-    user_experience = 5
-    user_platinum = True
-    user_level = 3
+    if not token:
+        return JsonResponse({'error': 'Token is missing'}, status=401)
 
-    # Simulate fetching data
-    subjects_list = [
-        {"title": "Math 101", "description": "Basic Mathematics", "instructor": "Dr. Smith"},
-        {"title": "History 202", "description": "World History", "instructor": "Prof. Jones"},
-    ]
-    mentors_list = ["Dr. Smith", "Prof. Jones"]
-    student_count = 50
-    mentor_count = 10
-    current_strength = mentor_count + student_count
+    try:
+        # Decode the token to get the payload
+        decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+        user_email = decoded_token.get('email')
+        
+        if not user_email:
+            return JsonResponse({'error': 'Email not found in token'}, status=401)
+        
+        print(f"dashboard : {user_email}")
 
-    return render(
-        request,
-        "student-dashboard-new/studentdashboard.html",
-        {
-            "subjects": subjects_list,
-            "mentors": mentors_list,
-            "experience": user_experience,
-            "platinum": user_platinum,
-            "level": user_level,
-            "student_count": student_count,
-            "mentor_count": mentor_count,
-            "institute_name": user_institute,
-            "current_strength": current_strength,
-        },
-    )
+        # For now, simulate user information
+        user_lastactive = users_collection.find_one({"email": user_email})['login_dates'][-1]
+        user_experience = users_collection.find_one({"email": user_email})['experience']
+        user_platinum = users_collection.find_one({"email": user_email})['platinum']
+        user_level = users_collection.find_one({"email": user_email})['level']
+        # Simulate fetching data
+        # Calculate streak
+        streak = len(user_lastactive)
+        user_streak = streak
+        subjects_list = [
+            {"title": "Math 101", "description": "Basic Mathematics", "instructor": "Dr. Smith"},
+        ]
+
+        return render(request, 'student-dashboard-new/studentdashboard.html', {
+            'user_email': user_email,
+            'user_lastactive': user_lastactive,
+            'user_streak' : user_streak,
+            'user_experience': user_experience,
+            'user_platinum': user_platinum,
+            'user_level': user_level,
+            'subjects_list': subjects_list,
+        })
+    except jwt.ExpiredSignatureError:
+        return JsonResponse({'error': 'Token has expired'}, status=401)
+    except jwt.InvalidTokenError:
+        return JsonResponse({'error': 'Invalid token'}, status=401)
 
 @jwt_required
 def student_shop(request):
