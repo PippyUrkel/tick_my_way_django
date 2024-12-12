@@ -71,11 +71,6 @@ def profile(request):
 def skill_page(request):
     return render(request, 'roadmap-render/skill-page.html', {})
 
-def roadmap(request):
-    user_email = "andredsouza256@gmail.com"  # Replace with dynamic email from session or request
-    items = get_generated_items(user_email, q_topic="Arts Craft")
-    return render(request, 'roadmap-render/roadmap.html', {'items': items})
-
 def skill_selection(request):
     if request.method == 'POST':
         selected_skills = request.POST.get('selected_skills', '')
@@ -210,13 +205,19 @@ def upload_file(request):
     
     return redirect('roadmap')
 
+@jwt_required
 def roadmap(request):
+    # Get email from JWT token
     user_email = request.user_email
-    items = get_generated_items(user_email, q_topic="Arts Craft")
     
+    # Get generated items for roadmap
+    items = get_generated_items(user_email, q_topic="python")
+    
+    # Build context with both items and file data
     context = {
         'items': items,
         'file_content': request.session.get('file_content'),
         'filename': request.session.get('filename')
     }
+    
     return render(request, 'roadmap-render/roadmap.html', context)

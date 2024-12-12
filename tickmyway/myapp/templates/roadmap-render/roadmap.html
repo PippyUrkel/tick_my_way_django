@@ -57,39 +57,42 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="info-pane">
+                <!-- <div class="file-section">
+                    <h3>Upload File</h3>
+                    <form class="upload-form" method="post" action="{% url 'upload_file' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="file-input-container">
+                            <input type="file" id="file-upload" name="file" class="file-input" accept=".docx">
+                            <label for="file-upload" class="file-label">
+                                <span class="upload-icon">📎</span>
+                                Choose a file
+                            </label>
+                            <button type="submit" class="upload-btn">Upload</button>
+                        </div>
+                    </form>
+                    
+                    <div class="file-display">
+                        {% if filename %}
+                            <h4>{{ filename }}</h4>
+                        {% else %}
+                            <h4>Uploaded File</h4>
+                        {% endif %}
+                        <div id="file-content" class="file-content">
+                            {% if file_content %}
+                                {{ file_content|linebreaks }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div> -->
+            </div>        
         </div>
+
     </div>
     <!-- Update info-pane in roadmap.html -->
-    <div class="info-pane">
-        <div class="file-section">
-            <h3>Upload File</h3>
-            <form class="upload-form" method="post" action="{% url 'upload_file' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="file-input-container">
-                    <input type="file" id="file-upload" name="file" class="file-input" accept=".docx">
-                    <label for="file-upload" class="file-label">
-                        <span class="upload-icon">📎</span>
-                        Choose a file
-                    </label>
-                    <button type="submit" class="upload-btn">Upload</button>
-                </div>
-            </form>
-            
-            <div class="file-display">
-                {% if filename %}
-                    <h4>{{ filename }}</h4>
-                {% else %}
-                    <h4>Uploaded File</h4>
-                {% endif %}
-                <div id="file-content" class="file-content">
-                    {% if file_content %}
-                        {{ file_content|linebreaks }}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- <script src="{% static 'roadmap-render/roadmap-sih.js' %}"></script> -->
+
+    <script src="{% static 'roadmap-render/roadmap-sih.js' %}"></script>
+
+
 </body>
 </html>
